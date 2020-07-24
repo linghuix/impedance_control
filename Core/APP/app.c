@@ -121,11 +121,13 @@ OS_EVENT * Trajectory_Q_1;
 void * trajectoryPointer_1[5];
 trajectory trajectoryBuffer_1[5];
 
+extern PID_Regulator_t forceControlPID;
 void Epos_Task(void *p_arg)
 {
 	//Task_MSG("CANApp_Task ... ");
 	EposMaster_Init();
 	EposMaster_Start();
+	PID_Init(&forceControlPID, 0,0,0,1500,1500,1500,8000);
 	
 	Trajectory_Q_1 = OSQCreate(&trajectoryPointer_1[0],5);
 	
@@ -233,7 +235,8 @@ void CANSend_Task(void *p_arg)
 		{
 			static MAIL pmailbox;
 			HAL_status = MX_CANx_send(pHCANx, TxMsg, pmailbox);
-			while( HAL_status != HAL_OK ){										//发送失败, 延时1个滴答, 再次发送
+// 控制需要满足实时性，因此CAN缓冲区必须尽快清除，因此CANsend task不能使用 while 多次尝试发送，而是仅发一次，就抛弃
+			if( HAL_status != HAL_OK ){										//发送失败, 延时1个滴答, 再次发送.
 				OSTimeDly(1);
 				HAL_status = MX_CANx_send(pHCANx, TxMsg, pmailbox);
 			}

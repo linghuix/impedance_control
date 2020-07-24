@@ -7,5 +7,5 @@
 
 /* debug depend on conf_uart.h */
 #include "debug.h"
-
+#include "pid.h"
 #endif

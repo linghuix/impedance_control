@@ -9,8 +9,8 @@
 uint8_t NODE_ID[] = {6,5,4,5,6,7};                          																//EPOS ID
 Epos Controller1, Controller2, Controller3, Controller4, Controller5, Controller6;        //控制器对
 Epos *Controller[] = {&Controller1, &Controller2, &Controller3, &Controller4, &Controller5, &Controller6};
-uint8_t NumControllers = 2;
-
+uint8_t NumControllers = 1;
+int home[] = {0, 0, 0, 0,0,0};
 
 #include "canopen_interface.h"
 #include "func_CanOpen.h"
@@ -26,14 +26,27 @@ void EposMaster_Start(void)
 	
 	if (!(*(TestMaster_Data.iam_a_slave)))		//master
 	{
-		
         Epos_init();
         Epos_ModeSet(Cyclic_Synchronous_Torque_Mode);
         EPOS_Enable();
 		
+		
+		for(int i=0;i<NumControllers;i++){
+			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
+			Epos_PosSet(Controller[i],home[i]);
+		}
+		OSTimeDlyHMSM(0, 0, 1, 0);
+		/* 验证是否进入位于home */
+		for(int i=0;i<NumControllers;i++){
+			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
+			MSG("pos - %x\r\n",data[i]);
+		}
+		
+
 		OSTimeDlyHMSM(0, 0,2,0);
 		EPOS_PDOEnter();
 	}
+
 	
 	/* 验证是否进入 Operational 模式 */
 	for(int i=0;i<NumControllers;i++){
@@ -41,14 +54,9 @@ void EposMaster_Start(void)
 		MSG("state - %x\r\n",data[i]);
 	}
 	
-	//if(((data[0]>>9)&0x01) & ((data[1]>>9)&0x01) & ((data[2]>>9)&0x01) & ((data[3]>>9)&0x01)){
-		HAL_TIM_Base_Start_IT(CANOPEN_TIMx_handle);
+	//if(((data[0]>>9)&0x01)){
 		MSG("already start MNT\r\n");
-		printf("-----------------------------------------------\r\n");
-		printf("-----------------PDO_ENABLE -------------------\r\n");
-		printf("-----------------------------------------------\r\n");
-		//setState(&TestMaster_Data, Pre_operational); //心跳,同步周期协议配置
-		setState(&TestMaster_Data, Operational);
+		EPOSMaster_PDOStart();
 	//}
 }
 

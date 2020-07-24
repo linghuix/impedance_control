@@ -37,22 +37,22 @@ void Init_MyDict(void)
 	uint32_t data;
 	TestMaster_obj1006 = MS10;		//set sync cycle
 
-	data = 0x182;
+	data = 0x186;
 	Edit_Dict(&TestMaster_Data,0x14000120, 0x01, &data);		//RPDO	node 1
-	data = 0x183;
+	data = 0x286;
 	Edit_Dict(&TestMaster_Data,0x14010120, 0x01, &data);		//RPDO	node 2
-	data = 0x184;
+	/*data = 0x184;
 	Edit_Dict(&TestMaster_Data,0x14020120, 0x01, &data);		//RPDO	node 3
 	data = 0x185;
 	Edit_Dict(&TestMaster_Data,0x14030120, 0x01, &data);		//RPDO	node 4
 	data = 0x186;
 	Edit_Dict(&TestMaster_Data,0x14040120, 0x01, &data);		//RPDO	node 5
 	data = 0x187;
-	Edit_Dict(&TestMaster_Data,0x14050120, 0x01, &data);		//RPDO	node 6
+	Edit_Dict(&TestMaster_Data,0x14050120, 0x01, &data);		//RPDO	node 6*/
 	
-	data = 0x202;
+	data = 0x206;
 	Edit_Dict(&TestMaster_Data,0x18000120, 0x01, &data);		//TPDO	node 1
-	data = 0x203;
+	/*data = 0x203;
 	Edit_Dict(&TestMaster_Data,0x18010120, 0x01, &data);		//TPDO	node 2
 	data = 0x204;
 	Edit_Dict(&TestMaster_Data,0x18020120, 0x01, &data);		//TPDO	node 3
@@ -61,5 +61,5 @@ void Init_MyDict(void)
 	data = 0x206;
 	Edit_Dict(&TestMaster_Data,0x18040120, 0x01, &data);		//TPDO	node 5
 	data = 0x207;
-	Edit_Dict(&TestMaster_Data,0x18050120, 0x01, &data);		//TPDO	node 6
+	Edit_Dict(&TestMaster_Data,0x18050120, 0x01, &data);		//TPDO	node 6*/
 }

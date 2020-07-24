@@ -173,6 +173,63 @@ void Test_curve (CO_Data* d)
  * Window > Preferences > C/C++ > Editor > Templates.
  */
 
+
+#include "pid.h"
+extern PID_Regulator_t forceControlPID;
+
+
+float CalI_target(float f_control ,float currentforce)
+{
+	forceControlPID.fdb = currentforce;
+	forceControlPID.ref = f_control;
+	PID_Calc(&forceControlPID);
+	float I_control = forceControlPID.output;
+	
+	
+	I_control = f_control;	//no torque feedback
+	
+	
+	return I_control;
+}
+
+
+typedef struct
+{
+	float theta;
+	float theta_dot;
+	float theta_ddot;
+	float torque;
+} MotorState_t;
+
+MotorState_t desiredTarget = {0,0,0,0};
+MotorState_t CurrentState = {0};
+float M = 0.01, L=0.3, J = 0.0037;
+float Jm = 0.0037, Dm=2, Km = 3;
+
+float CalForce_target(MotorState_t * MotorStateTarget, MotorState_t * CurrentMotorState, float currentContactForce)
+{
+	float f_control = J*MotorStateTarget->theta_ddot+
+		J/Jm*(Dm*(MotorStateTarget->theta_dot-CurrentMotorState->theta_dot) + Km*(MotorStateTarget->theta-CurrentMotorState->theta))+
+		(J/Jm - 1)*currentContactForce;
+	
+	return f_control;
+}
+
+float currenttheta, currenttheta_dot, currentforce;	//单位 
+
+extern int32_t Pos_Actual_Val_node5, Actual_Velocity_VALUE_node5,Current_Actual_Val_node5;
+extern int16_t Actual_Torque_VALUE_node5, Torque_SET_VALUE_node5;
+
+void getMotorState(void)
+{
+	
+	CurrentState.theta = Pos_Actual_Val_node5*360.0/4096.0/4.0;	//CANOpen dict 0x6064 convert to degree
+	CurrentState.theta_dot = Actual_Velocity_VALUE_node5;		//CANOpen dict 0x606C rpm
+	CurrentState.torque = Actual_Torque_VALUE_node5;			//CANOpen dict 	mNm
+	//Current_Actual_Val_node5 mA
+	printf("%.2f\t%.2f\t%.2f\t%d\t\r\n", CurrentState.theta, CurrentState.theta_dot, CurrentState.torque, Current_Actual_Val_node5);
+}
+
 void _post_sync(CO_Data* d)
 {
 	(void)d;
@@ -180,8 +237,33 @@ void _post_sync(CO_Data* d)
 	//waiting for sensor information
 	//assive(d);
 	//sin_cos_test(d);
-	Test_curve(d);
+	//Test_curve(d);
 
+	getMotorState();
+	// impedance control algorithm
+	float f_control = CalForce_target(&desiredTarget, &CurrentState, 0);	//mNm
+	// force control algorithm
+	float I_control = CalI_target(f_control , CurrentState.torque);			//mA
+	
+//	if(I_control>0 && (CurrentState.theta<2 ||CurrentState.theta>-2  )){
+//		I_control += 30;
+//	}
+//	if(I_control<0 && (CurrentState.theta<2 ||CurrentState.theta>-2  )){
+//		I_control -= 30.0;
+//	}
+	
+	if(I_control>2000){
+		I_control = 2000.0;
+	}
+	if(I_control<-2000){
+		I_control = -2000.0;
+	}
+	
+	printf("%.2fmNm, %.2fmNm\r\n", f_control, I_control);
+	//I_control = -300;
+	int I_temp = I_control;
+	Torque_SET_VALUE_node5 = (int16_t)I_temp ;
+	
 	#ifdef REMOTE_APP
     if(Stop == 1){
          EPOSMaster_PDOStop();

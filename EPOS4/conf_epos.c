@@ -157,17 +157,16 @@ void Node_setMode(Epos* epos, Uint16 mode){
     switch(mode){
 
 	/** EPOS4 **/
-	case(Profile_Position_Mode):		//CONFIGURATION PARAMETERS
+	case(Profile_Position_Mode):										//CONFIGURATION PARAMETERS
 		break;
 	
 	case(Profile_Velocity_Mode):
 		//SDO_Write(epos,OP_MODE,0x00,Velocity_Mode);
-		SDO_Write(epos,Max_Acceleration,0x00,1000);                                                // set Max Acceleration
-		SDO_Write(epos, Max_Profile_Velocity, 0x00, MAX_P_V);                                            // Maximal Profile Velocity
+		SDO_Write(epos,Max_Acceleration,0x00,1000);                     // set Max Acceleration
+		SDO_Write(epos, Max_Profile_Velocity, 0x00, MAX_P_V);           // Maximal Profile Velocity
 		break;
 
 	case(Homing_Mode):
-
 		break;
 
 	case(Cyclic_Synchronous_Position_Mode):	
@@ -175,29 +174,39 @@ void Node_setMode(Epos* epos, Uint16 mode){
         SDO_Write(epos, Motor_torque_constant, 0, 136000);              // 136 mNm/A
 		SDO_Write(epos, Q_deceleration, 0x00, QDEC);                    //快速停止负加速度
 		SDO_Write(epos, Profile_Deceleration, 0x00, MAX_DEC);           //快速停止负加速度
-		SDO_Write(epos, Following_error_window, 0x00, MAX_F_ERR);            // Maximal Profile Velocit		
+		SDO_Write(epos, Following_error_window, 0x00, MAX_F_ERR);       // Maximal Profile Velocit		
         SDO_Write(epos, Soft_P_Limit_Min, 0x01, 0x80000000);            //-2147483648
 		SDO_Write(epos, Soft_P_Limit_Max, 0x02, 0x7FFFFFFF);            //2147483647
         SDO_Write(epos, Max_motor_speed, 0x00, 2000);					//参考电机手册
 		//SDO_Write(epos, Max_gear_input_speed, 0x03,2000);
 		SDO_Write(epos, Interpolation_Time_index, 0, (uint8_t)-3);
-        SDO_Write(epos, Interpolation_Time_Period_value, 0, 10);			// ms
+        SDO_Write(epos, Interpolation_Time_Period_value, 0, 50);		// ms
         SDO_Write(epos,Max_Acceleration,0x00,MAX_ACC);
 		break;
 
 	case(Cyclic_Synchronous_Velocity_Mode):
 		SDO_Write(epos, Soft_P_Limit_Min, 0x01, 0x80000000);                //-2147483648
 		SDO_Write(epos, Soft_P_Limit_Max, 0x02, 0x7FFFFFFF);                //2147483647
-		SDO_Write(epos, Max_Profile_Velocity, 0x00,3000);                 //最大速度 Maximal Profile Velocity
-		SDO_Write(epos, Q_deceleration, 0x00, 50000);              //快速停止负加速度
-		SDO_Write(epos, Max_motor_speed, 0x00, 5000);              // Maximal Profile Velocity
+		SDO_Write(epos, Max_Profile_Velocity, 0x00,3000);                 	//最大速度 Maximal Profile Velocity
+		SDO_Write(epos, Q_deceleration, 0x00, 50000);              			//快速停止负加速度
+		SDO_Write(epos, Max_motor_speed, 0x00, 5000);              			// Maximal Profile Velocity
 		SDO_Write(epos, Max_gear_input_speed, 0x03,1000);
 		SDO_Write(epos,Max_Acceleration,0x00,10000);
 		break;
 
 	case(Cyclic_Synchronous_Torque_Mode):
-		SDO_Write(epos, Soft_P_Limit_Min, 0x01, 0x80000000);                //-2147483648
-		SDO_Write(epos, Soft_P_Limit_Max, 0x02, 0x7FFFFFFF);                //2147483647
+        SDO_Write(epos, Nominal_current, 0, 7000);                      // max is 8.73 A
+        SDO_Write(epos, Motor_torque_constant, 0, 136000);              // 136 mNm/A
+        SDO_Write(epos, Max_motor_speed, 0x00, 1000);					//参考电机手册
+		SDO_Write(epos, Q_deceleration, 0x00, QDEC);                    //快速停止负加速度
+		SDO_Write(epos, Profile_Deceleration, 0x00, MAX_DEC);           //快速停止负加速度
+		SDO_Write(epos, Following_error_window, 0x00, MAX_F_ERR);       // Maximal Profile Velocit		
+        SDO_Write(epos, Soft_P_Limit_Min, 0x01, 0x80000000);            //-2147483648
+		SDO_Write(epos, Soft_P_Limit_Max, 0x02, 0x7FFFFFFF);            //2147483647
+		SDO_Write(epos, Max_gear_input_speed, 0x03,1000);
+		SDO_Write(epos,Max_Acceleration,0x00,10000);
+		SDO_Write(epos, Interpolation_Time_index, 0, (uint8_t)-3);
+        SDO_Write(epos, Interpolation_Time_Period_value, 0, 10);		// ms
 		break;
 
 	default:
@@ -208,20 +217,20 @@ void Node_setMode(Epos* epos, Uint16 mode){
     
 void Node_OperEn(Epos* epos){
 	
-    SDO_Write(epos,Controlword,0x00,Shutdown);                    // Shut down  驱动函数失能
+    SDO_Write(epos,Controlword,0x00,Shutdown);                    	// Shut down  驱动函数失能
     Epos_Delay(500);
 
-    //SDO_Read(epos,OD_STATUS_WORD,0x00);                      // Ready to Switch On    Status=0x0121   绿灯闪烁
+    //SDO_Read(epos,OD_STATUS_WORD,0x00);                      		// Ready to Switch On    Status=0x0121   绿灯闪烁
     
-    SDO_Write(epos,Controlword,0x00,Switch_on_Enable_operation);                    // Switch on AND Enable Operation 驱动参数设定
+    SDO_Write(epos,Controlword,0x00,Switch_on_Enable_operation);    // Switch on AND Enable Operation 驱动参数设定
     Epos_Delay(500);
     
-    //SDO_Read(epos,OD_STATUS_WORD,0x00);                      // Operation Enable      Status=0x0137   绿灯常亮
+    //SDO_Read(epos,OD_STATUS_WORD,0x00);                      		// Operation Enable      Status=0x0137   绿灯常亮
 }
 
 void Node_DisEn(Epos* epos){
 	
-    SDO_Write(epos,Position_actual_value,0x00,0x06);                    // Disable Operation    Controlword=0xxx 0111
+    SDO_Write(epos,Position_actual_value,0x00,0x06);                // Disable Operation    Controlword=0xxx 0111
     Epos_Delay(500);
 }
 

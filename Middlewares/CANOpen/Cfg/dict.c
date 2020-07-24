@@ -110,7 +110,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                        { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1018_Serial_Number, NULL }
                      };
 
-/* index 0x1200 :   SDO server parameter.     Index 1200h-127Fhï¼ŒSever SDO Parameterï¼Œ1200hå¯é€‰*/
+/* index 0x1200 :   SDO server parameter.     Index 1200h-127Fh£¬Sever SDO Parameter£¬1200h¿ÉÑ¡*/
 					UNS8 ServerNumber_0x1200 = 2;
 					UNS32 TestMaster_obj1200_COB_ID_SDO_CS_RX  = 0x600;
                     UNS32 TestMaster_obj1200_COB_ID_SDO_SC_TX = 0x580;
@@ -121,12 +121,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1200_COB_ID_SDO_SC_TX, NULL },
 					};
 
-/* index 0x1280 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+/* index 0x1280 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO  
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1280 = 3;
 					UNS32 TestMaster_obj1280_COB_ID_SDO_CS_TX  = 0x602;
 					UNS32 TestMaster_obj1280_COB_ID_SDO_SC_RX = 0x582;
-					UNS8 TestMaster_obj1280_COB_ID_Server = 2;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1280_COB_ID_Server = 2;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
                     subindex TestMaster_Index1280[] = 
                      {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1280, NULL },
@@ -135,12 +135,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1280_COB_ID_Server, NULL },
                      };
 
-/* index 0x1281 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1281 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1281 = 3;
 					UNS32 TestMaster_obj1281_COB_ID_SDO_CS_TX  = 0x603;
 					UNS32 TestMaster_obj1281_COB_ID_SDO_SC_RX = 0x583;
-					UNS8 TestMaster_obj1281_COB_ID_Server = 3;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1281_COB_ID_Server = 3;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1281[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1281, NULL },
@@ -149,12 +149,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1281_COB_ID_Server, NULL },
 					 };
 
-/* index 0x1282 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1282 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1282 = 3;
 					UNS32 TestMaster_obj1282_COB_ID_SDO_CS_TX  = 0x604;
 					UNS32 TestMaster_obj1282_COB_ID_SDO_SC_RX = 0x584;
-					UNS8 TestMaster_obj1282_COB_ID_Server = 4;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1282_COB_ID_Server = 4;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1282[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1282, NULL },
@@ -163,12 +163,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1282_COB_ID_Server, NULL },
 					 };
 					 
-/* index 0x1283 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1283 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1283 = 3;
 					UNS32 TestMaster_obj1283_COB_ID_SDO_CS_TX  = 0x605;
 					UNS32 TestMaster_obj1283_COB_ID_SDO_SC_RX = 0x585;
-					UNS8 TestMaster_obj1283_COB_ID_Server = 5;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1283_COB_ID_Server = 5;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1283[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1283, NULL },
@@ -177,12 +177,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1283_COB_ID_Server, NULL },
 					 };
 					 
-/* index 0x1284 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1284 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1284 = 3;
 					UNS32 TestMaster_obj1284_COB_ID_SDO_CS_TX  = 0x606;
 					UNS32 TestMaster_obj1284_COB_ID_SDO_SC_RX = 0x586;
-					UNS8 TestMaster_obj1284_COB_ID_Server = 6;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1284_COB_ID_Server = 6;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1284[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1284, NULL },
@@ -191,12 +191,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1284_COB_ID_Server, NULL },
 					 };
 					 
-/* index 0x1285 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1285 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1285 = 3;
 					UNS32 TestMaster_obj1285_COB_ID_SDO_CS_TX  = 0x607;
 					UNS32 TestMaster_obj1285_COB_ID_SDO_SC_RX = 0x587;
-					UNS8 TestMaster_obj1285_COB_ID_Server = 7;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1285_COB_ID_Server = 7;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1285[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1285, NULL },
@@ -205,12 +205,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						{ RO, uint8,  sizeof (UNS8), (void*)&TestMaster_obj1285_COB_ID_Server, NULL },
 					 };
 					 
-/* index 0x1286 :   SDO clit .    Index 1280h-12FFhï¼ŒClient SDO Parameterï¼Œå¿…é¡»å¦‚æœæ”¯æŒå¯¹åº”çš„Client SDO
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/
+/* index 0x1286 :   SDO clit .    Index 1280h-12FFh£¬Client SDO Parameter£¬±ØĞëÈç¹ûÖ§³Ö¶ÔÓ¦µÄClient SDO
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/
 					UNS8 ClientNumber_0x1286 = 3;
 					UNS32 TestMaster_obj1286_COB_ID_SDO_CS_TX  = 0x608;
 					UNS32 TestMaster_obj1286_COB_ID_SDO_SC_RX = 0x588;
-					UNS8 TestMaster_obj1286_COB_ID_Server = 8;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS8 TestMaster_obj1286_COB_ID_Server = 8;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index1286[] =
 					 {
 						{ RO, uint8,  sizeof (UNS8), (void*)&ClientNumber_0x1286, NULL },
@@ -419,22 +419,22 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
 
- /* 0x1600	 Index 1600h-17FFhï¼ŒReceive PDO Mapping Parameter  Node2*/
-					 UNS8 TestMaster_obj1600_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1600	 Index 1600h-17FFh  Receive PDO Mapping Parameter  Node2*/
+					 UNS8 TestMaster_obj1600_Number_mapped = 2;
 
-					 UNS32 TestMaster_obj1600_1_mapped = 0x60610020;
-					 UNS32 TestMaster_obj1600_2_mapped = 0x00010020;	//å®é™…ç”µæµå€¼
+					 UNS32 TestMaster_obj1600_1_mapped = 0x60660020;
+					 UNS32 TestMaster_obj1600_2_mapped = 0x00050020;
 					 subindex TestMaster_Index1600[] = 
 					 {
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1600_Number_mapped, NULL },
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1600_1_mapped, NULL },
-						 { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1600_2_mapped, NULL },
+						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1600_2_mapped, NULL },
 					 };
 						 
- /* 0x1601	 Index 1601h-17FFhï¼ŒReceive PDO Mapping Parameter  Node3*/
-					 UNS8 TestMaster_obj1601_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					 UNS32 TestMaster_obj1601_1_mapped = 0x60620020;
-					 UNS32 TestMaster_obj1601_2_mapped = 0x00020020;	//å®é™…ç”µæµå€¼
+ /* 0x1601	 Index 1601h-17FFh Receive PDO Mapping Parameter  Node3*/
+					 UNS8 TestMaster_obj1601_Number_mapped = 2;
+					 UNS32 TestMaster_obj1601_1_mapped = 0x607C0020;
+					 UNS32 TestMaster_obj1601_2_mapped = 0x00150010;
 					 subindex TestMaster_Index1601[] = 
 					 {
 						 { RO, uint8, sizeof (UNS8), (void*)&TestMaster_obj1601_Number_mapped, NULL },
@@ -442,8 +442,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1601_2_mapped, NULL },
 					 };
 						 
- /* 0x1602	 Index 1602h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1602_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1602	 Index 1602h-17FFh  Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1602_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1602_1_mapped = 0x60630020;
 					 UNS32 TestMaster_obj1602_2_mapped = 0x00030010;
 					 subindex TestMaster_Index1602[] = 
@@ -453,8 +453,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1602_2_mapped, NULL },
 					 };
 						 
- /* 0x1603	 Index 1603h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1603_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1603	 Index 1603h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1603_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1603_1_mapped = 0x60640020;
 					 UNS32 TestMaster_obj1603_2_mapped = 0x00040020;
 					 subindex TestMaster_Index1603[] = 
@@ -464,8 +464,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1603_2_mapped, NULL },
 					 };
 
- /* 0x1604	 Index 1604h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1604_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1604	 Index 1604h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1604_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1604_1_mapped = 0x60660020;
 					 UNS32 TestMaster_obj1604_2_mapped = 0x00050020;
 					 subindex TestMaster_Index1604[] = 
@@ -475,8 +475,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1604_2_mapped, NULL },
 					 };
 					 
- /* 0x1605	 Index 1605h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1605_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1605	 Index 1605h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1605_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1605_1_mapped = 0x60670020;//pos
 					 UNS32 TestMaster_obj1605_2_mapped = 0x00060020;
 					 subindex TestMaster_Index1605[] = 
@@ -486,8 +486,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1605_2_mapped, NULL },
 					 };
 					 
- /* 0x1606	 Index 1606h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1606_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1606	 Index 1606h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1606_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1606_1_mapped = 0x60680020;
 					 UNS32 TestMaster_obj1606_2_mapped = 0x00070020;
 					 subindex TestMaster_Index1606[] = 
@@ -497,8 +497,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1606_2_mapped, NULL },
 					 };
 					 
- /* 0x1607	 Index 1607h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1607_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1607	 Index 1607h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1607_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1607_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1607_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1607[] = 
@@ -508,8 +508,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1607_2_mapped, NULL },
 					 };
 					 
- /* 0x1608	 Index 1608h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1608_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1608	 Index 1608h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1608_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1608_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1608_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1608[] = 
@@ -519,8 +519,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1608_2_mapped, NULL },
 					 };
 					 
- /* 0x1609	 Index 1609h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1609_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1609	 Index 1609h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1609_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1609_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1609_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1609[] = 
@@ -530,8 +530,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1609_2_mapped, NULL },
 					 };
 					 
- /* 0x1610	 Index 1610h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1610_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1610	 Index 1610h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1610_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1610_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1610_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1610[] = 
@@ -541,8 +541,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1610_2_mapped, NULL },
 					 };
 					 
- /* 0x1611	 Index 1611h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1611_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1611	 Index 1611h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1611_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1611_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1611_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1611[] = 
@@ -553,8 +553,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					 
 					 
- /* 0x1612	 Index 1612h-17FFhï¼ŒReceive PDO Mapping Parameter */
-					 UNS8 TestMaster_obj1612_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1612	 Index 1612h-17FFh£¬Receive PDO Mapping Parameter */
+					 UNS8 TestMaster_obj1612_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1612_1_mapped = 0x60400010;
 					 UNS32 TestMaster_obj1612_2_mapped = 0x607A0020;
 					 subindex TestMaster_Index1612[] = 
@@ -571,7 +571,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 										 
 /* index 0x1800 :   TPDO 1 .    Index 1800h-19FFh,  Transmit PDO Communication Parameter  */ 
 					UNS8 ClientNumber_0x1800 = 5;
-					UNS32 TestMaster_obj1800_COB_ID_PDO = 0x40000180;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1800_COB_ID_PDO = 0x40000180;							//0x40000000 means vaild. 
 					UNS8 TestMaster_obj1800_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1800_Inhibit_time = 1;
 					UNS8 TestMaster_obj1800_compatibility_entry = 0;
@@ -587,9 +587,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 
 /* index 0x1801 :   TPDO 2 .    Index 1801h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1801 = 5;
-					UNS32 TestMaster_obj1801_COB_ID_PDO = 0x40000280;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1801_COB_ID_PDO = 0x40000280;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1801_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1801_Inhibit_time = 1;
 					UNS8 TestMaster_obj1801_compatibility_entry = 0;
@@ -605,9 +605,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 
 /* index 0x1802 :   TPDO .    Index 1802h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1802 = 5;
-					UNS32 TestMaster_obj1802_COB_ID_PDO = 0x40000185;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1802_COB_ID_PDO = 0x40000185;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1802_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1802_Inhibit_time = 1;
 					UNS8 TestMaster_obj1802_compatibility_entry = 0;
@@ -623,9 +623,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					 
 /* index 0x1803 :   TPDO 4 .    Index 1803h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1803 = 5;
-					UNS32 TestMaster_obj1803_COB_ID_PDO = 0x40000186;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1803_COB_ID_PDO = 0x40000186;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1803_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1803_Inhibit_time = 1;
 					UNS8 TestMaster_obj1803_compatibility_entry = 0;
@@ -641,9 +641,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 
 /* index 0x1804 :   TPDO 4 .    Index 1804h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1804 = 5;
-					UNS32 TestMaster_obj1804_COB_ID_PDO = 0x40000187;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1804_COB_ID_PDO = 0x40000187;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1804_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1804_Inhibit_time = 1;
 					UNS8 TestMaster_obj1804_compatibility_entry = 0;
@@ -659,9 +659,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					 
 /* index 0x1805 :   TPDO 4 .    Index 1805h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1805 = 5;
-					UNS32 TestMaster_obj1805_COB_ID_PDO = 0x40000205;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1805_COB_ID_PDO = 0x40000205;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1805_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1805_Inhibit_time = 1;
 					UNS8 TestMaster_obj1805_compatibility_entry = 0;
@@ -677,9 +677,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					 
 /* index 0x1806 :   TPDO 4 .    Index 1806h-19FFh,  Transmit PDO Communication Parameter  
-										 å½“æˆ‘éœ€è¦é…ç½®å…¶ä»–èŠ‚ç‚¹çš„å­—å…¸å€¼æ—¶ï¼Œæˆ‘å˜æˆäº†å®¢æˆ·ç«¯ï¼Œè¦æ±‚æœåŠ¡å™¨è‡ªå·±ä¿®æ”¹è‡ªå·±*/ 
+										 µ±ÎÒĞèÒªÅäÖÃÆäËû½ÚµãµÄ×ÖµäÖµÊ±£¬ÎÒ±ä³ÉÁË¿Í»§¶Ë£¬ÒªÇó·şÎñÆ÷×Ô¼ºĞŞ¸Ä×Ô¼º*/ 
 					UNS8 ClientNumber_0x1806 = 5;
-					UNS32 TestMaster_obj1806_COB_ID_PDO = 0x40000188;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 TestMaster_obj1806_COB_ID_PDO = 0x40000188;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					UNS8 TestMaster_obj1806_Transmiss_Type  = TRANS_EVERY_N_SYNC(1);
 					UNS16 TestMaster_obj1806_Inhibit_time = 10;
 					UNS8 TestMaster_obj1806_compatibility_entry = 0;
@@ -695,19 +695,17 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					
 					 
-/* 0x1A00  Index 1A00h-1BFFhï¼ŒTransmit PDO Mapping Parameter  Node0*/
-					UNS8 TestMaster_obj1A00_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					//UNS32 TestMaster_1_mapped = 0x60400010;
-					UNS32 TestMaster_2_mapped = 0x20610020;
+/* 0x1A00  Index 1A00h-1BFFh Transmit PDO Mapping Parameter  Node0*/
+					UNS8 TestMaster_obj1A00_Number_mapped = 1;
+					UNS32 TestMaster_obj1A00_1_mapped = 0x00250010;
                     subindex TestMaster_Index1A00[] = 
                      {
                        { RO, uint8, sizeof (UNS8), (void*)&TestMaster_obj1A00_Number_mapped, NULL },
-                       //{ RO, uint32, sizeof (UNS32), (void*)&TestMaster_1_mapped, NULL },
-                       { RO, uint32, sizeof (UNS32), (void*)&TestMaster_2_mapped, NULL },
+                       { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1A00_1_mapped, NULL },
                      };
 
-/* 0x1A01	 Index 1A01h-1BFFhï¼ŒTransmit PDO Mapping Parameter  Node1*/
-					 UNS8 TestMaster_obj1A01_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+/* 0x1A01	 Index 1A01h-1BFFh£¬Transmit PDO Mapping Parameter  Node1*/
+					 UNS8 TestMaster_obj1A01_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A01_2_mapped = 0x20620020;
 					 subindex TestMaster_Index1A01[] = 
 					 {
@@ -715,8 +713,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A01_2_mapped, NULL },
 					 };
 
-/* 0x1A02	 Index 1A02h-1BFFhï¼ŒTransmit PDO Mapping Parameter  Node2*/
-					 UNS8 TestMaster_obj1A02_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+/* 0x1A02	 Index 1A02h-1BFFh£¬Transmit PDO Mapping Parameter  Node2*/
+					 UNS8 TestMaster_obj1A02_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A02_1_mapped = 0x20630020;
 					 subindex TestMaster_Index1A02[] = 
 					 {
@@ -724,8 +722,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A02_1_mapped, NULL },
 					 };
 						 
- /* 0x1A03	 Index 1A03h-1BFFhï¼ŒTransmit PDO Mapping Parameter Node3*/
-					 UNS8 TestMaster_obj1A03_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1A03	 Index 1A03h-1BFFh£¬Transmit PDO Mapping Parameter Node3*/
+					 UNS8 TestMaster_obj1A03_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A03_1_mapped = 0x20640020;
 					 subindex TestMaster_Index1A03[] = 
 					 {
@@ -733,8 +731,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A03_1_mapped, NULL },
 					 };
 
- /* 0x1A04	 Index 1A04h-1BFFhï¼ŒTransmit PDO Mapping Parameter Node4*/
-					 UNS8 TestMaster_obj1A04_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1A04	 Index 1A04h-1BFFh£¬Transmit PDO Mapping Parameter Node4*/
+					 UNS8 TestMaster_obj1A04_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A04_1_mapped = 0x20650020;
 					 subindex TestMaster_Index1A04[] = 
 					 {
@@ -742,8 +740,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A04_1_mapped, NULL },
 					 };
 					 
- /* 0x1A05	 Index 1A05h-1BFFhï¼ŒTransmit PDO Mapping Parameter Node5*/
-					 UNS8 TestMaster_obj1A05_Number_mapped = 1; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1A05	 Index 1A05h-1BFFh£¬Transmit PDO Mapping Parameter Node5*/
+					 UNS8 TestMaster_obj1A05_Number_mapped = 1; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A05_1_mapped = 0x20660020;
 					 subindex TestMaster_Index1A05[] = 
 					 {
@@ -751,8 +749,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A05_1_mapped, NULL },
 					 };
 					 
- /* 0x1A06	 Index 1A06h-1BFFhï¼ŒTransmit PDO Mapping Parameter Node6*/
-					 UNS8 TestMaster_obj1A06_Number_mapped = 2; //æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+ /* 0x1A06	 Index 1A06h-1BFFh£¬Transmit PDO Mapping Parameter Node6*/
+					 UNS8 TestMaster_obj1A06_Number_mapped = 2; //·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 UNS32 TestMaster_obj1A06_1_mapped = 0x20670020;
 					 subindex TestMaster_Index1A06[] = 
 					 {
@@ -761,47 +759,47 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 };
 					 
 /* 0x6040   Controlword */
-					UNS16 Controlword = 0x0F;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS16 Controlword = 0x0F;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
                     subindex TestMaster_Index6040[] = 
                      {
                        { RW, uint16, sizeof (UNS16), (void*)&Controlword, NULL },
                      };
 										 
 /* 0x607A   Target position */
-					UNS32 Target_position = 0x1234;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 Target_position = 0x1234;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
                     subindex TestMaster_Index607A[] = 
                      {
                        { RW, uint32, sizeof (UNS32), (void*)&Target_position, NULL },
                      };		
 					   
 /* 0x6060   mode */
-					UNS32 mode = 0x6060;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 mode = 0x6060;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
                     subindex TestMaster_Index6060[] = 
                      {
                        { RW, uint32, sizeof (UNS32), (void*)&mode, NULL },
                      };
 /* 0x6065   mode1 */
-				   UNS32 mode1 = 0x6065;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+				   UNS32 mode1 = 0x6065;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 				   subindex TestMaster_Index6065[] = 
 					{
 					  { RW, uint32, sizeof (UNS32), (void*)&mode1, NULL },
 					}; 
 
 /* 0x6070	mode2 */
-					UNS32 mode2 = 0x6070;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 mode2 = 0x6070;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6070[] = 
 					 {
 					   { RW, uint32, sizeof (UNS32), (void*)&mode2, NULL },
 					 }; 
 
 /* 0x6075	 mode3 */
-					 UNS32 mode3 = 0x6075;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					 UNS32 mode3 = 0x6075;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					 subindex TestMaster_Index6075[] = 
 					  {
 						{ RW, uint32, sizeof (UNS32), (void*)&mode3, NULL },
 					  }; 
 /* 0x6080	mode4 */
-					UNS32 mode4 = 0x6080;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS32 mode4 = 0x6080;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6080[] = 
 					 {
 					   { RW, uint32, sizeof (UNS32), (void*)&mode4, NULL },
@@ -809,149 +807,169 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
 /* 0x6041   Status */
-					UNS16 Statusword = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					UNS16 Statusword = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6041[] =
 					 {
 					   { RW, uint16, sizeof (UNS16), (void*)&Statusword, NULL },
 					 };
 
 
-/* %%%%%%%%%%% RPDO å­˜å‚¨æ•°æ®åŒº %%%%%%%%%%%%%%%%%*/
-/* %%%%%%%%%%% RPDO å­˜å‚¨æ•°æ®åŒº %%%%%%%%%%%%%%%%%*/
-/* %%%%%%%%%%% RPDO å­˜å‚¨æ•°æ®åŒº %%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%% RPDO ´æ´¢Êı¾İÇø %%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%% RPDO ´æ´¢Êı¾İÇø %%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%% RPDO ´æ´¢Êı¾İÇø %%%%%%%%%%%%%%%%%*/
 					 
 /* 0x6061   Pos_Actual_Val for node1*/
-					INTEGER32 Pos_Actual_Val_node1 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node1 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6061[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node1, NULL }, };
 /* 0x6062   Pos_Actual_Val for node3*/
-					INTEGER32 Pos_Actual_Val_node2 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node2 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6062[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node2, NULL }, };
 /* 0x6063   Pos_Actual_Val for node3*/
-					INTEGER32 Pos_Actual_Val_node3 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node3 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6063[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node3, NULL }, };
 /* 0x6064   Pos_Actual_Val for node4*/
-					INTEGER32 Pos_Actual_Val_node4 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node4 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6064[] = { { RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node4, NULL }, };
 /* 0x6066   Pos_Actual_Val for node5*/
-					INTEGER32 Pos_Actual_Val_node5 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node5 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6066[] ={ { RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node5, NULL }, };
 /* 0x6067   Pos_Actual_Val for node6*/
-					INTEGER32 Pos_Actual_Val_node6 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node6 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6067[] = {{ RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node6, NULL },};
 /* 0x6068   Pos_Actual_Val for node7*/
-					INTEGER32 Pos_Actual_Val_node7 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_Actual_Val_node7 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6068[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_Actual_Val_node7, NULL }, };
 
 					
 					
 /*0x2061 node1*/
-					INTEGER32 Pos_SET_VALUE_node1 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node1 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2061[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node1, NULL },};
 /*0x2062 node2*/
-					INTEGER32 Pos_SET_VALUE_node2 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node2 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2062[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node2, NULL },};
 /*0x2063  node3*/
-					INTEGER32 Pos_SET_VALUE_node3 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node3 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2063[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node3, NULL },};	 
 /*0x2064  node4*/
-					INTEGER32 Pos_SET_VALUE_node4 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node4 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2064[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node4, NULL },};			 
 /*0x2065  node5*/
-					INTEGER32 Pos_SET_VALUE_node5 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node5 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2065[] ={ { RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node5, NULL },};
 /*0x2066  node6*/
-					INTEGER32 Pos_SET_VALUE_node6 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node6 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2066[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node6, NULL },};
 /*0x2066  node7*/
-					INTEGER32 Pos_SET_VALUE_node7 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Pos_SET_VALUE_node7 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index2067[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node7, NULL },};
 
 					
-
+/*0x0021 node1*/
+					INTEGER16 Torque_SET_VALUE_node1 = 0x0;
+					subindex TestMaster_Index0021[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node1, NULL },};
+/*0x0022 node2*/
+					INTEGER16 Torque_SET_VALUE_node2 = 0x0;
+					subindex TestMaster_Index0022[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node2, NULL },};
+/*0x0023  node3*/
+					INTEGER16 Torque_SET_VALUE_node3 = 0x0;
+					subindex TestMaster_Index0023[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node3, NULL },};	 
+/*0x0024  node4*/
+					INTEGER16 Torque_SET_VALUE_node4 = 0x0;
+					subindex TestMaster_Index0024[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node4, NULL },};			 
+/*0x0025  node5*/
+					INTEGER16 Torque_SET_VALUE_node5 = 0x0;
+					subindex TestMaster_Index0025[] ={ { RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node5, NULL },};
+/*0x0026  node6*/
+					INTEGER16 Torque_SET_VALUE_node6 = 0x0;
+					subindex TestMaster_Index0026[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node6, NULL },};
+/*0x0026  node7*/
+					INTEGER16 Torque_SET_VALUE_node7 = 0x0;
+					subindex TestMaster_Index0027[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node7, NULL },};
 					
 /* 0x6077   Current_Actual_Val for node1*/
-					INTEGER16 Current_Actu1al_Val_node1 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index6077[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Current_Actu1al_Val_node1, NULL },};
+					INTEGER32 Current_Actu1al_Val_node1 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
+					subindex TestMaster_Index6077[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Current_Actu1al_Val_node1, NULL },};
 /* 0x6078   Current_Actual_Val for node2*/
-					INTEGER16 Current_Actual_Val_node2 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Current_Actual_Val_node2 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6078[] =
 					 {
-					   { RW, int16, sizeof (INTEGER16), (void*)&Current_Actual_Val_node2, NULL },
+					   { RW, int32, sizeof (INTEGER32), (void*)&Current_Actual_Val_node2, NULL },
 					 };
 /* 0x6079   Current_Actual_Val for node3*/
-					INTEGER16 Current_Actual_Val_node3 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Current_Actual_Val_node3 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index6079[] =
 					 {
-					   { RW, int16, sizeof (INTEGER16), (void*)&Current_Actual_Val_node3, NULL },
+					   { RW, int32, sizeof (INTEGER32), (void*)&Current_Actual_Val_node3, NULL },
 					 };
 /* 0x607B   Current_Actual_Val for node4*/
-					INTEGER16 Current_Actual_Val_node4 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Current_Actual_Val_node4 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index607B[] =
 					 {
-					   { RW, int16, sizeof (INTEGER16), (void*)&Current_Actual_Val_node4, NULL },
+					   { RW, int32, sizeof (INTEGER32), (void*)&Current_Actual_Val_node4, NULL },
 					 };
 /* 0x607C   Current_Actual_Val for node5*/
-					INTEGER16 Current_Actual_Val_node5 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Current_Actual_Val_node5 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index607C[] =
 					 {
-					   { RW, int16, sizeof (INTEGER16), (void*)&Current_Actual_Val_node5, NULL },
+					   { RW, int32, sizeof (INTEGER32), (void*)&Current_Actual_Val_node5, NULL },
 					 };
 /* 0x607D   Current_Actual_Val for node6*/
-					INTEGER16 Current_Actu1al_Val_node6 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index607D[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Current_Actu1al_Val_node6, NULL },};
+					INTEGER32 Current_Actu1al_Val_node6 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
+					subindex TestMaster_Index607D[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Current_Actu1al_Val_node6, NULL },};
 /* 0x607E   Current_Actual_Val for node7*/
-					INTEGER16 Current_Actu1al_Val_node7 = 0x00;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index607E[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Current_Actu1al_Val_node7, NULL },};
-
-					
+					INTEGER32 Current_Actu1al_Val_node7 = 0x00;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
+					subindex TestMaster_Index607E[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Current_Actu1al_Val_node7, NULL },};
+	
 					
 					
 /*0x0001 node1*/
-					INTEGER32 Actual_Velocity_VALUE_node1 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node1 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0001[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node1, NULL },};
 /*0x0002 node2*/
-					INTEGER32 Actual_Velocity_VALUE_node2 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node2 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0002[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node2, NULL },};
 /*0x0003  node3*/
-					INTEGER32 Actual_Velocity_VALUE_node3 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node3 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0003[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node3, NULL },};	 
 /*0x0004  node4*/
-					INTEGER32 Actual_Velocity_VALUE_node4 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node4 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0004[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node4, NULL },};			 
 /*0x0005  node5*/
-					INTEGER32 Actual_Velocity_VALUE_node5 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node5 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0005[] ={ { RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node5, NULL },};
 /*0x0006  node6*/
-					INTEGER32 Actual_Velocity_VALUE_node6 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node6 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0006[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node6, NULL },};
 /*0x0007  node7*/
-					INTEGER32 Actual_Velocity_VALUE_node7 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
+					INTEGER32 Actual_Velocity_VALUE_node7 = 0x0;//·şÎñÆ÷£¬Ò²¾ÍÊÇĞèÒªĞŞ¸ÄµÄ½Úµã
 					subindex TestMaster_Index0007[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Velocity_VALUE_node7, NULL },};
 
 					
 					
 					
 /*0x0011 node1*/
-					INTEGER32 Actual_Torque_VALUE_node1 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0011[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node1, NULL },};
+					INTEGER16 Actual_Torque_VALUE_node1 = 0x0;//Actual_Torque_VALUE_node1
+					subindex TestMaster_Index0011[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node1, NULL },};
 /*0x0012 node2*/
-					INTEGER32 Actual_Torque_VALUE_node2 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0012[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node2, NULL },};
+					INTEGER16 Actual_Torque_VALUE_node2 = 0x0;
+					subindex TestMaster_Index0012[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node2, NULL },};
 /*0x0013  node3*/
-					INTEGER32 Actual_Torque_VALUE_node3 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0013[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node3, NULL },};	 
+					INTEGER16 Actual_Torque_VALUE_node3 = 0x0;
+					subindex TestMaster_Index0013[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node3, NULL },};	 
 /*0x0014  node4*/
-					INTEGER32 Actual_Torque_VALUE_node4 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0014[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node4, NULL },};			 
+					INTEGER16 Actual_Torque_VALUE_node4 = 0x0;
+					subindex TestMaster_Index0014[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node4, NULL },};			 
 /*0x0015  node5*/
-					INTEGER32 Actual_Torque_VALUE_node5 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0015[] ={ { RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node5, NULL },};
+					INTEGER16 Actual_Torque_VALUE_node5 = 0x0;
+					subindex TestMaster_Index0015[] ={ { RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node5, NULL },};
 /*0x0016  node6*/
-					INTEGER32 Actual_Torque_VALUE_node6 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0016[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node6, NULL },};
-/*0x0016  node7*/
-					INTEGER32 Actual_Torque_VALUE_node7 = 0x0;//æœåŠ¡å™¨ï¼Œä¹Ÿå°±æ˜¯éœ€è¦ä¿®æ”¹çš„èŠ‚ç‚¹
-					subindex TestMaster_Index0017[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_Torque_VALUE_node7, NULL },};
+					INTEGER16 Actual_Torque_VALUE_node6 = 0x0;
+					subindex TestMaster_Index0016[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node6, NULL },};
+/*0x0017  node7*/
+					INTEGER16 Actual_Torque_VALUE_node7 = 0x0;
+					subindex TestMaster_Index0017[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node7, NULL },};
+
 
 
 /**************************************************************************/
@@ -1058,6 +1076,22 @@ const indextable TestMaster_objdict[] =
 	{ (subindex*)TestMaster_Index0006,sizeof(TestMaster_Index0006)/sizeof(TestMaster_Index0006[0]), 0x0006},
 	{ (subindex*)TestMaster_Index0007,sizeof(TestMaster_Index0007)/sizeof(TestMaster_Index0007[0]), 0x0007},
 	
+	{ (subindex*)TestMaster_Index0011,sizeof(TestMaster_Index0011)/sizeof(TestMaster_Index0011[0]), 0x0011},//receive actual Torque
+	{ (subindex*)TestMaster_Index0012,sizeof(TestMaster_Index0012)/sizeof(TestMaster_Index0012[0]), 0x0012},
+	{ (subindex*)TestMaster_Index0013,sizeof(TestMaster_Index0013)/sizeof(TestMaster_Index0013[0]), 0x0013},
+	{ (subindex*)TestMaster_Index0014,sizeof(TestMaster_Index0014)/sizeof(TestMaster_Index0014[0]), 0x0014},
+	{ (subindex*)TestMaster_Index0015,sizeof(TestMaster_Index0015)/sizeof(TestMaster_Index0015[0]), 0x0015},
+	{ (subindex*)TestMaster_Index0016,sizeof(TestMaster_Index0016)/sizeof(TestMaster_Index0016[0]), 0x0016},
+	{ (subindex*)TestMaster_Index0017,sizeof(TestMaster_Index0017)/sizeof(TestMaster_Index0017[0]), 0x0017},
+	
+	{ (subindex*)TestMaster_Index0021,sizeof(TestMaster_Index0021)/sizeof(TestMaster_Index0021[0]), 0x0021},//set Torque
+	{ (subindex*)TestMaster_Index0022,sizeof(TestMaster_Index0022)/sizeof(TestMaster_Index0022[0]), 0x0022},
+	{ (subindex*)TestMaster_Index0023,sizeof(TestMaster_Index0023)/sizeof(TestMaster_Index0023[0]), 0x0023},
+	{ (subindex*)TestMaster_Index0024,sizeof(TestMaster_Index0024)/sizeof(TestMaster_Index0024[0]), 0x0024},
+	{ (subindex*)TestMaster_Index0025,sizeof(TestMaster_Index0025)/sizeof(TestMaster_Index0025[0]), 0x0025},
+	{ (subindex*)TestMaster_Index0026,sizeof(TestMaster_Index0026)/sizeof(TestMaster_Index0026[0]), 0x0026},
+	{ (subindex*)TestMaster_Index0027,sizeof(TestMaster_Index0027)/sizeof(TestMaster_Index0027[0]), 0x0027},
+                    
 };
 
 
@@ -1163,7 +1197,23 @@ const indextable * TestMaster_scanIndexOD (CO_Data *d, UNS16 wIndex, UNS32 * err
 		case 0x0004: i = 83;break;
 		case 0x0005: i = 84;break;
 		case 0x0006: i = 85;break;
-		case 0x0007: i = 88;break;
+		case 0x0007: i = 86;break;
+		
+		case 0x0011: i = 87;break;
+		case 0x0012: i = 88;break;
+		case 0x0013: i = 89;break;
+		case 0x0014: i = 90;break;
+		case 0x0015: i = 91;break;
+		case 0x0016: i = 92;break;
+		case 0x0017: i = 93;break;
+		
+		case 0x0021: i = 94;break;
+		case 0x0022: i = 95;break;
+		case 0x0023: i = 96;break;
+		case 0x0024: i = 97;break;
+		case 0x0025: i = 98;break;
+		case 0x0026: i = 99;break;
+		case 0x0027: i = 100;break;
 		
 		default:
 			*errorCode = OD_NO_SUCH_OBJECT;
@@ -1179,7 +1229,7 @@ const indextable * TestMaster_scanIndexOD (CO_Data *d, UNS16 wIndex, UNS32 * err
  * Even if no pdoTransmit are defined, at least one entry is computed
  * for compilations issues.
  */
-//PDO é€šè®¯ç®¡é“çš„æ•°é‡ï¼Œè¦æ§åˆ¶6ä¸ªEPOSï¼Œå°±éœ€è¦6ä¸ªç»“æ„ä½“
+//PDO Í¨Ñ¶¹ÜµÀµÄÊıÁ¿£¬Òª¿ØÖÆ6¸öEPOS£¬¾ÍĞèÒª6¸ö½á¹¹Ìå
 s_PDO_status TestMaster_PDO_status[6] = 
 	{s_PDO_status_Initializer,s_PDO_status_Initializer,s_PDO_status_Initializer,
 	s_PDO_status_Initializer,s_PDO_status_Initializer,s_PDO_status_Initializer};
@@ -1195,11 +1245,11 @@ const quick_index TestMaster_firstIndex = {
 
 const quick_index TestMaster_lastIndex = {
   4, /* SDO_SVR */
-  10, /* SDO_CLT */
-  17, /* PDO_RCV */
-  30, /* PDO_RCV_MAP */
-  43, /* PDO_TRS */
-  50 /* PDO_TRS_MAP */
+  11, /* SDO_CLT */
+  13, /* PDO_RCV */
+  26, /* PDO_RCV_MAP */
+  38, /* PDO_TRS */
+  45 /* PDO_TRS_MAP */
 };
 
 const UNS16 TestMaster_ObjdictSize = sizeof(TestMaster_objdict)/sizeof(TestMaster_objdict[0]); 
