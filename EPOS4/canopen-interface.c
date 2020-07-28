@@ -204,10 +204,13 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.0037, Dm=2, Km = 3;
+float wn=3,yita=0.707;
+float Jm = 0.0037, Dm, Km;//2/3perfect
 
 float CalForce_target(MotorState_t * MotorStateTarget, MotorState_t * CurrentMotorState, float currentContactForce)
 {
+	Dm = 2*yita*wn;
+	Km = wn*wn;
 	float f_control = J*MotorStateTarget->theta_ddot+
 		J/Jm*(Dm*(MotorStateTarget->theta_dot-CurrentMotorState->theta_dot) + Km*(MotorStateTarget->theta-CurrentMotorState->theta))+
 		(J/Jm - 1)*currentContactForce;
@@ -217,17 +220,33 @@ float CalForce_target(MotorState_t * MotorStateTarget, MotorState_t * CurrentMot
 
 float currenttheta, currenttheta_dot, currentforce;	//单位 
 
-extern int32_t Pos_Actual_Val_node5, Actual_Velocity_VALUE_node5,Current_Actual_Val_node5;
+extern int32_t Pos_Actual_Val_node5, Actual_Velocity_VALUE_node5,Current_Actual_Val_node5, Actual_AVRVelocity_VALUE_node5;
 extern int16_t Actual_Torque_VALUE_node5, Torque_SET_VALUE_node5;
 
 void getMotorState(void)
 {
+	uint8_t time = 50;
 	
+	while(Pos_Actual_Val_node5 == 12358 && time >0){				//make sure data did refresh
+		time --;
+	}
 	CurrentState.theta = Pos_Actual_Val_node5*360.0/4096.0/4.0;	//CANOpen dict 0x6064 convert to degree
-	CurrentState.theta_dot = Actual_Velocity_VALUE_node5;		//CANOpen dict 0x606C rpm
+	
+	while(Actual_AVRVelocity_VALUE_node5 == 12358 && time < 50){
+		time ++;
+	}
+	CurrentState.theta_dot = Actual_AVRVelocity_VALUE_node5;		//CANOpen dict 0x606C rpm
+	
+	while(Actual_Torque_VALUE_node5 == 12358 && time > 0){
+		time --;
+	}
 	CurrentState.torque = Actual_Torque_VALUE_node5;			//CANOpen dict 	mNm
+	
 	//Current_Actual_Val_node5 mA
-	printf("%.2f\t%.2f\t%.2f\t%d\t\r\n", CurrentState.theta, CurrentState.theta_dot, CurrentState.torque, Current_Actual_Val_node5);
+	printf("ActualState %.2f\t%.2f\t%.2f\t%d\t", CurrentState.theta, CurrentState.theta_dot, CurrentState.torque, Current_Actual_Val_node5);
+	Pos_Actual_Val_node5=12358;
+	Actual_AVRVelocity_VALUE_node5=12358;
+	Actual_Torque_VALUE_node5 = 12358;
 }
 
 void _post_sync(CO_Data* d)
@@ -252,14 +271,14 @@ void _post_sync(CO_Data* d)
 //		I_control -= 30.0;
 //	}
 	
-	if(I_control>2000){
-		I_control = 2000.0;
+	if(I_control>500){
+		I_control = 500.0;
 	}
-	if(I_control<-2000){
-		I_control = -2000.0;
+	if(I_control<-500){
+		I_control = -500.0;
 	}
 	
-	printf("%.2fmNm, %.2fmNm\r\n", f_control, I_control);
+	printf("Command %.2f\r\n", I_control);
 	//I_control = -300;
 	int I_temp = I_control;
 	Torque_SET_VALUE_node5 = (int16_t)I_temp ;

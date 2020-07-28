@@ -27,23 +27,24 @@ void EposMaster_Start(void)
 	if (!(*(TestMaster_Data.iam_a_slave)))		//master
 	{
         Epos_init();
+		Epos_PDOConfig();
         Epos_ModeSet(Cyclic_Synchronous_Torque_Mode);
         EPOS_Enable();
 		
 		
-		for(int i=0;i<NumControllers;i++){
-			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
-			Epos_PosSet(Controller[i],home[i]);
-		}
-		OSTimeDlyHMSM(0, 0, 1, 0);
-		/* 验证是否进入位于home */
-		for(int i=0;i<NumControllers;i++){
-			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
-			MSG("pos - %x\r\n",data[i]);
-		}
+//		for(int i=0;i<NumControllers;i++){
+//			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
+//			Epos_PosSet(Controller[i],home[i]);
+//		}
+//		OSTimeDlyHMSM(0, 0, 1, 0);
+//		/* 验证是否进入位于home */
+//		for(int i=0;i<NumControllers;i++){
+//			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
+//			MSG("pos - %x\r\n",data[i]);
+//		}
 		
 
-		OSTimeDlyHMSM(0, 0,2,0);
+//		OSTimeDlyHMSM(0, 0,2,0);
 		EPOS_PDOEnter();
 	}
 
@@ -205,17 +206,18 @@ void SDO_SpeedTest(void){
 }
 
 
-
-void Epos_PDOConfig(void){
-
+void Epos_PDOConfig(void)
+{
     //NMT_Pre(Controller[1], ALL);                        
-    SDO_Read(Controller[1],Statusword,0x00);
+//    SDO_Read(Controller[1],Statusword,0x00);
 
-    Node_PDOConfig(Controller[1]);
-    SDO_Read(Controller[1],0x1400,0x01);
-    SDO_Read(Controller[1],0x1600,0x00);
-    SDO_Read(Controller[1],0x1600,0x01);
+	for(int i=0;i<NumControllers;i++){
+		Node_PDOConfig(Controller[i]);
+	}
+	
+//    SDO_Read(Controller[1],0x1400,0x01);
+//    SDO_Read(Controller[1],0x1600,0x00);
+//    SDO_Read(Controller[1],0x1600,0x01);
     //NMT_Start(Controller[1], ALL);
 }
-
 
