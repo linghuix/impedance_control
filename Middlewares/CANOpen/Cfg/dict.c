@@ -423,7 +423,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 UNS8 TestMaster_obj1600_Number_mapped = 2;
 
 					 UNS32 TestMaster_obj1600_1_mapped = 0x60660020;
-					 UNS32 TestMaster_obj1600_2_mapped = 0x00050020;
+					 UNS32 TestMaster_obj1600_2_mapped = 0x00350020;
 					 subindex TestMaster_Index1600[] = 
 					 {
 						 { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1600_Number_mapped, NULL },
@@ -970,7 +970,28 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					INTEGER16 Actual_Torque_VALUE_node7 = 0x0;
 					subindex TestMaster_Index0017[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Actual_Torque_VALUE_node7, NULL },};
 
-
+					
+/*0x0031 node1*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node1 = 0x0; 
+					subindex TestMaster_Index0031[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node1, NULL },};
+/*0x0032 node2*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node2 = 0x0; 
+					subindex TestMaster_Index0032[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node2, NULL },};
+/*0x0033  node3*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node3 = 0x0; 
+					subindex TestMaster_Index0033[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node3, NULL },};	 
+/*0x0034  node4*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node4 = 0x0; 
+					subindex TestMaster_Index0034[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node4, NULL },};			 
+/*0x0035  node5*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node5 = 0x0; 
+					subindex TestMaster_Index0035[] ={ { RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node5, NULL },};
+/*0x0036  node6*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node6 = 0x0; 
+					subindex TestMaster_Index0036[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node6, NULL },};
+/*0x0037  node7*/
+					INTEGER32 Actual_AVRVelocity_VALUE_node7 = 0x0; 
+					subindex TestMaster_Index0037[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Actual_AVRVelocity_VALUE_node7, NULL },};
 
 /**************************************************************************/
 /* Declaration of pointed variables                                       */
@@ -1091,6 +1112,14 @@ const indextable TestMaster_objdict[] =
 	{ (subindex*)TestMaster_Index0025,sizeof(TestMaster_Index0025)/sizeof(TestMaster_Index0025[0]), 0x0025},
 	{ (subindex*)TestMaster_Index0026,sizeof(TestMaster_Index0026)/sizeof(TestMaster_Index0026[0]), 0x0026},
 	{ (subindex*)TestMaster_Index0027,sizeof(TestMaster_Index0027)/sizeof(TestMaster_Index0027[0]), 0x0027},
+	
+	{ (subindex*)TestMaster_Index0031,sizeof(TestMaster_Index0031)/sizeof(TestMaster_Index0031[0]), 0x0031},//receive actual average velocity
+	{ (subindex*)TestMaster_Index0032,sizeof(TestMaster_Index0032)/sizeof(TestMaster_Index0032[0]), 0x0032},
+	{ (subindex*)TestMaster_Index0033,sizeof(TestMaster_Index0033)/sizeof(TestMaster_Index0033[0]), 0x0033},
+	{ (subindex*)TestMaster_Index0034,sizeof(TestMaster_Index0034)/sizeof(TestMaster_Index0034[0]), 0x0034},
+	{ (subindex*)TestMaster_Index0035,sizeof(TestMaster_Index0035)/sizeof(TestMaster_Index0035[0]), 0x0035},
+	{ (subindex*)TestMaster_Index0036,sizeof(TestMaster_Index0036)/sizeof(TestMaster_Index0036[0]), 0x0036},
+	{ (subindex*)TestMaster_Index0037,sizeof(TestMaster_Index0037)/sizeof(TestMaster_Index0037[0]), 0x0037},
                     
 };
 
@@ -1214,6 +1243,14 @@ const indextable * TestMaster_scanIndexOD (CO_Data *d, UNS16 wIndex, UNS32 * err
 		case 0x0025: i = 98;break;
 		case 0x0026: i = 99;break;
 		case 0x0027: i = 100;break;
+		
+		case 0x0031: i = 101;break;
+		case 0x0032: i = 102;break;
+		case 0x0033: i = 103;break;
+		case 0x0034: i = 104;break;
+		case 0x0035: i = 105;break;
+		case 0x0036: i = 106;break;
+		case 0x0037: i = 107;break;
 		
 		default:
 			*errorCode = OD_NO_SUCH_OBJECT;
