@@ -3,6 +3,7 @@
 
 #include "func_CanOpen.h"
 #include "func_epos.h"
+#include "M8128ForceCollector.h"
 #include "gait.h"
 #include "led.h"
 

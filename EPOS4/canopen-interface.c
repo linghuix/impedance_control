@@ -205,16 +205,14 @@ MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
 float wn=3,yita=0.707;
-float Jm = 0.0037, Dm, Km;//2/3perfect
+float Jm = 0.1, Dm, Km;//2/3perfect
 
-float CalForce_target(MotorState_t * MotorStateTarget, MotorState_t * CurrentMotorState, float currentContactForce)
+//---------------------------------------------------------
+// admittance control need external force sensor
+//---------------------------------------------------------
+#include "M8128ForceCollector.h"
+float GetForce()
 {
-	Dm = 2*yita*wn;
-	Km = wn*wn;
-	float f_control = J*MotorStateTarget->theta_ddot+
-		J/Jm*(Dm*(MotorStateTarget->theta_dot-CurrentMotorState->theta_dot) + Km*(MotorStateTarget->theta-CurrentMotorState->theta))+
-		(J/Jm - 1)*currentContactForce;
-	
 	return f_control;
 }
 
@@ -260,9 +258,7 @@ void _post_sync(CO_Data* d)
 
 	getMotorState();
 	// impedance control algorithm
-	float f_control = CalForce_target(&desiredTarget, &CurrentState, 0);	//mNm
-	// force control algorithm
-	float I_control = CalI_target(f_control , CurrentState.torque);			//mA
+	float x_target = ;
 	
 //	if(I_control>0 && (CurrentState.theta<2 ||CurrentState.theta>-2  )){
 //		I_control += 30;

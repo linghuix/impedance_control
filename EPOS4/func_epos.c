@@ -18,9 +18,8 @@ extern uint8_t NumControllers;
 extern int PERIOD ;
 void EposMaster_Start(void)
 {
-	//uint32_t data[6];
+	uint32_t data[6];
 	Init_MyDict();
-	Uint32 data[6];
 	
 	setState(&TestMaster_Data, Initialisation);
 	
@@ -28,7 +27,7 @@ void EposMaster_Start(void)
 	{
         Epos_init();
 		Epos_PDOConfig();
-        Epos_ModeSet(Cyclic_Synchronous_Torque_Mode);
+        Epos_ModeSet(Cyclic_Synchronous_Position_Mode);
         EPOS_Enable();
 		
 		

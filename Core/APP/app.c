@@ -131,6 +131,9 @@ void Epos_Task(void *p_arg)
 	
 	Trajectory_Q_1 = OSQCreate(&trajectoryPointer_1[0],5);
 	
+	ForceCollector_Init();
+	StartCollect();
+	
 	for(;;)
 	{
 	   #ifdef REMOTE_APP
@@ -209,9 +212,12 @@ void CANRcv_Task(void *p_arg)
 			}
 			CAN_RCV_MSG("\r\n");
 
-			//HAL_TIM_Base_Stop_IT(CANOPEN_TIMx_handle);
-			canDispatch(&TestMaster_Data, &msg);	   //处理接收到的CAN帧，调用协议库相关接口
-			//HAL_TIM_Base_Start_IT(CANOPEN_TIMx_handle);
+			if(msg.cob_id == 0x10){
+				forceDispatch(RxMsg);
+			}
+			else{
+				canDispatch(&TestMaster_Data, &msg);	   //处理接收到的CAN帧，调用协议库相关接口
+			}
 
 			if(waiting_sdo == 1){
 				OSSemQuery (CRCV_WAIT_Semp, &sem_data);

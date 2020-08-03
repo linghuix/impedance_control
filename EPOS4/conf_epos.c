@@ -190,7 +190,7 @@ void Node_setMode(Epos* epos, Uint16 mode){
         SDO_Write(epos, Max_motor_speed, 0x00, 2000);					//参考电机手册
 		//SDO_Write(epos, Max_gear_input_speed, 0x03,2000);
 		SDO_Write(epos, Interpolation_Time_index, 0, (uint8_t)-3);
-        SDO_Write(epos, Interpolation_Time_Period_value, 0, 50);		// ms
+        SDO_Write(epos, Interpolation_Time_Period_value, 0, 10);		// ms
         SDO_Write(epos,Max_Acceleration,0x00,MAX_ACC);
 		break;
 
