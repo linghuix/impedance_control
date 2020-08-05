@@ -24,7 +24,9 @@
 #define REMOTE_RECEIVEMSG(...)	printf("REMOTE: ");MYMSG(__VA_ARGS__)
 #define REMOTE_HANDLEMSG(...)	printf("REMOTE_Handle: ");MYMSG(__VA_ARGS__)
 #define ERROR(s,...)			printf("#ERROR %d# ",s);MYMSG(__VA_ARGS__);printf("\t--%s,%d\r\n",__FILE__, __LINE__)	//发送严重错误，必须指明错误语句和地点
-
+#define FORCE_COMMUNICATE_MSG(...)			//MYMSG(__VA_ARGS__)
+#define FORCE_DECODE_MSG(...)				//MYMSG(__VA_ARGS__)
+#define FORCE_MSG(...)						MYMSG(__VA_ARGS__)
 /*
  Definition of MSG_ERR
  ---------------------

@@ -119,7 +119,7 @@ void Node_PDOConfig(Epos* epos)
 	SDO_Write(epos,0x14030208,0x01,0x1); 
 	
 	SDO_Write(epos,0x16000008,0x01,0x0); 					//RxPDO map
-	SDO_Write(epos,0x16000120,0x01,Target_torque); 
+	SDO_Write(epos,0x16000120,0x01,Target_pos); 
 	SDO_Write(epos,0x16000008,0x01,0x1); 					
 
 	

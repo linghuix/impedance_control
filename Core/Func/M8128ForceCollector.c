@@ -42,12 +42,13 @@ void SendString (char * str)
 
 void ForceCollector_Init (void)
 {
+	FORCE_MSG("ForceCollector init\r\n");
 	for(int i=0; i<FORCENUMMAX; i++){
 		force[i] = 0;
 	}
 	
-	MX_CAN1_Init(CAN_MODE_NORMAL);
-	CAN_Start(&hcan1);
+//	MX_CAN1_Init(CAN_MODE_NORMAL);
+//	CAN_Start(&hcan1);
 	
 	ForceCommand.head.StdId = 0x010;
 	ForceCommand.head.DLC = 8;
@@ -62,6 +63,7 @@ void ForceCollector_Init (void)
 
 void StartCollect (void)
 {	
+	FORCE_MSG("start collect\r\n");
 	char ForceStartCommand[] = "AT+GSD\r\n";		// command string
 	SendString (ForceStartCommand);
 }
@@ -93,7 +95,7 @@ uint8_t addForceBuffer(float data)
 
 //---------------------------------------------------------
 // brief - get average of the previous ForceBufferSize-number force data. 
-// 		Regard it as current force.
+// 		It is a average filiter and Regard average force as true force.
 //---------------------------------------------------------
 
 float AvgForceBuffer(void)
@@ -111,17 +113,18 @@ float GetOffset(void)
 {
 	if(n == 200){
 		Offset += AvgForceBuffer();
+		FORCE_MSG("------------------ offset get --------------------\r\n");
 	}
 	return Offset;
 }
 
 //---------------------------------------------------------
-// brief -  and of course offset is needed.
+// brief -  get the current force.and of course offset is needed.
 //---------------------------------------------------------
 
 float getCurrentForce(void)
 {
-	return AvgForceBuffer()-;
+	return AvgForceBuffer()-Offset;
 }
 
 uint8_t OneframeDetected = 0;					// flag for one forcedata frame receive mark
@@ -130,6 +133,7 @@ uint16_t forceIndex = 0;						// row data index forstore
 void forceDispatch(CanRxMsg * ForceData)
 {
 	if(ForceData->Data[0] == 0xAA && ForceData->Data[1] == 0x55){		// one frame head
+		FORCE_COMMUNICATE_MSG("receive force frame");
 		forceIndex = 0;
 		OneframeDetected = 1;
 		dataLength = ((ForceData->Data[2]<<8)| ForceData->Data[3]) - 2;
@@ -151,7 +155,7 @@ void forceDispatch(CanRxMsg * ForceData)
 
 	if(dataLength == 0 && OneframeDetected == 1){
 		
-		printf("%d-%d\t",n,ordernum);
+		FORCE_DECODE_MSG("%d-%d\t",n,ordernum);
 		float * f;
 		int data;
 		for(uint8_t j=5;j<6;j++){
@@ -162,13 +166,14 @@ void forceDispatch(CanRxMsg * ForceData)
 			}
 	//				measureForce[j] = *f;
 	//				printf("%.2f=%X\t", *f, data);
-			printf("%.1f\t", *f);
-			printf("%.2f\t", AvgForceBuffer()-GetOffset());
-			printf("offset%.3f", GetOffset());
+			FORCE_DECODE_MSG("\t%.1f\t", *f);
+			FORCE_DECODE_MSG("%.2f\t", AvgForceBuffer()-GetOffset());
+			FORCE_DECODE_MSG("offset%.3f", GetOffset());
 		}
-		printf("\r\n");
+		FORCE_DECODE_MSG("\r\n");
 		OneframeDetected = 0;
 		
+		GetOffset();
 		++n;
 		
 		/*if(++n >= 10){

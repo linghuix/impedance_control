@@ -46,6 +46,8 @@ void EposMaster_Start(void)
 //		OSTimeDlyHMSM(0, 0,2,0);
 		EPOS_PDOEnter();
 	}
+	
+	StartCollect();
 
 	
 	/* 验证是否进入 Operational 模式 */

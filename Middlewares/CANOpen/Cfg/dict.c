@@ -697,11 +697,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 					 
 /* 0x1A00  Index 1A00h-1BFFh Transmit PDO Mapping Parameter  Node0*/
 					UNS8 TestMaster_obj1A00_Number_mapped = 1;
-					UNS32 TestMaster_obj1A00_1_mapped = 0x00250010;
+					UNS32 TestMaster_obj1A00_1_mapped = 0x20650020;
                     subindex TestMaster_Index1A00[] = 
                      {
                        { RO, uint8, sizeof (UNS8), (void*)&TestMaster_obj1A00_Number_mapped, NULL },
-                       { RO, uint16, sizeof (UNS16), (void*)&TestMaster_obj1A00_1_mapped, NULL },
+                       { RO, uint32, sizeof (UNS32), (void*)&TestMaster_obj1A00_1_mapped, NULL },
                      };
 
 /* 0x1A01	 Index 1A01h-1BFFh，Transmit PDO Mapping Parameter  Node1*/
@@ -860,7 +860,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*0x2066  node6*/
 					INTEGER32 Pos_SET_VALUE_node6 = 0x0;//服务器，也就是需要修改的节点
 					subindex TestMaster_Index2066[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node6, NULL },};
-/*0x2066  node7*/
+/*0x2067  node7*/
 					INTEGER32 Pos_SET_VALUE_node7 = 0x0;//服务器，也就是需要修改的节点
 					subindex TestMaster_Index2067[] ={{ RW, int32, sizeof (INTEGER32), (void*)&Pos_SET_VALUE_node7, NULL },};
 

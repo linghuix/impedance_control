@@ -5,9 +5,11 @@
 #include "BSP.h"
 
 #include "func_can.h"
+#include "debug.h"
 
 
-#define ForceBufferSize 10
+
+#define ForceBufferSize 20
 
 struct ForceBuffer{
 	float data[ForceBufferSize];
@@ -18,6 +20,7 @@ struct ForceBuffer{
 void ForceCollector_Init (void);
 void StartCollect (void);
 void StopCollect (void);
+float getCurrentForce(void);
 extern void forceDispatch(CanRxMsg * ForceData);
 	
 TEST ForceCollector_test(void);

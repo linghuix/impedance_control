@@ -74,7 +74,10 @@ void CANOpen_App_Init(void)
 	//HAL_TIM_Base_Start_IT(CANOPEN_TIMx_handle);			//在EposMaster_Start函数中启动
 	CAN_Start(&hcan1);
 	
-
+	ForceCollector_Init();
+	StopCollect();											//stop the force collector 
+	FORCE_MSG("stop force collector.\r\n");
+	
 	/* 操作系统管理 */
 	CRCV_WAIT_Semp = OSSemCreate(0);
 	CANRcv_Q  = OSQCreate(&canrxMsgGrp[0],N_MESSAGES); 			//创建消息队列
@@ -117,22 +120,16 @@ extern uint8_t NumControllers;
 #include "conf_epos.h"
 
 /*轨迹曲线队列*/
-OS_EVENT * Trajectory_Q_1;
-void * trajectoryPointer_1[5];
-trajectory trajectoryBuffer_1[5];
 
 extern PID_Regulator_t forceControlPID;
 void Epos_Task(void *p_arg)
 {
-	//Task_MSG("CANApp_Task ... ");
+	Task_MSG("CANApp_Task ... ");
+		
 	EposMaster_Init();
 	EposMaster_Start();
 	PID_Init(&forceControlPID, 0,0,0,1500,1500,1500,8000);
 	
-	Trajectory_Q_1 = OSQCreate(&trajectoryPointer_1[0],5);
-	
-	ForceCollector_Init();
-	StartCollect();
 	
 	for(;;)
 	{
