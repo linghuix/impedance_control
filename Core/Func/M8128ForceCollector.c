@@ -93,6 +93,50 @@ uint8_t addForceBuffer(float data)
 	return 1;
 }
 
+
+//---------------------------------------------------------
+// @brief: get the index-1 for queue. 
+//---------------------------------------------------------
+
+uint16_t getPreviousIndex(uint16_t index)
+{
+
+	uint16_t previous;
+	if((uint16_t)(index-1) > index) {
+		previous = (ForceBufferSize-1);
+	}
+	else{
+		previous = (index-1);
+	}
+	//MMSG("index=%d previous=%d\r\n", index, previous);
+	return previous;
+}
+
+
+//---------------------------------------------------------
+// @brief: 添加基于之前数据的加权 add data weighted by previous data.
+// @call : getPreviousIndex
+//---------------------------------------------------------
+uint8_t addWeightingForceBuffer(float data)
+{
+	uint16_t previous = getPreviousIndex(forceBuffer.in);
+	uint16_t pprevious = getPreviousIndex(previous);
+	forceBuffer.data[forceBuffer.in] = 0.04*data+0.48*forceBuffer.data[previous]+0.48*forceBuffer.data[pprevious];
+	forceBuffer.in = (forceBuffer.in + 1)%ForceBufferSize;
+	return 1;
+}
+
+
+//---------------------------------------------------------
+// get the latest store weighted data which is filtered in addWeightingForceBuffer function.
+// @call : getPreviousIndex
+//---------------------------------------------------------
+
+float getfilteredForce(void)
+{
+	return forceBuffer.data[getPreviousIndex(forceBuffer.in)];
+}
+
 //---------------------------------------------------------
 // brief - get average of the previous ForceBufferSize-number force data. 
 // 		It is a average filiter and Regard average force as true force.
@@ -155,14 +199,15 @@ void forceDispatch(CanRxMsg * ForceData)
 
 	if(dataLength == 0 && OneframeDetected == 1){
 		
-		FORCE_DECODE_MSG("%d-%d\t",n,ordernum);
+		FORCE_DECODE_MSG("%d-%d\t\r\n",n,ordernum);
 		float * f;
 		int data;
 		for(uint8_t j=5;j<6;j++){
 			data = force[4*j] | force[4*j+1]<<8 | force[4*j+2]<<16 | force[4*j+3]<<24;
 			f = (float*) &data;
 			if(j==5){
-				addForceBuffer(*f);
+				//addForceBuffer(*f);
+				addWeightingForceBuffer(*f);
 			}
 	//				measureForce[j] = *f;
 	//				printf("%.2f=%X\t", *f, data);

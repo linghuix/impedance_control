@@ -74,6 +74,7 @@ extern INTEGER32 Pos_Actual_Val_node1, Pos_Actual_Val_node2, Pos_Actual_Val_node
 extern INTEGER32 Actual_Velocity_VALUE_node1, Actual_Velocity_VALUE_node2, Actual_Velocity_VALUE_node3, Actual_Velocity_VALUE_node4, Actual_Velocity_VALUE_node5, Actual_Velocity_VALUE_node6;
 extern INTEGER16 Current_Actual_Val_node2;
 extern INTEGER32 Pos_SET_VALUE_node3;
+extern INTEGER32 Actual_AVRVelocity_VALUE_node5;
 
 Uint32 Position[6];
 float Position_float[6];
@@ -218,7 +219,7 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.1, Dm, Km=1.0/8000.0;//2/3perfect
+float Jm = 0.1, Dm = -0.0/20000.0, Km=1.0/1000.0;			//1.0/8000.0;//2/3perfect
 
 //---------------------------------------------------------
 // admittance control need external force sensor
@@ -263,15 +264,17 @@ void constantTarget_admittance_control(void)
 	getMotorState();
 	
 	// admittance control algorithm
-	float currentForce = getCurrentForce();
+//	float currentForce = getCurrentForce();
+	float currentForce = getfilteredForce();
+
 	float x_target;
 	
-	x_target = currentForce/Km;//4000
+	x_target = (currentForce - Dm*CurrentState.theta_dot)/Km;//4000
 
 	int x_int = x_target;
-	Pos_SET_VALUE_node5 = x_int ;
+	Pos_SET_VALUE_node5 = x_target;
 	
-	printf("Command %d %.2f  f%.2f\r\n", x_int, x_target, currentForce);
+	MMSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce*10000);
 }
 
 
@@ -279,8 +282,8 @@ void _post_sync(CO_Data* d)
 {
 	(void)d;
 	SYNC_MSG("-post_sync-\r\n");
-	sin_cos_test(d);
-//	constantTarget_admittance_control();
+//	sin_cos_test(d);
+	constantTarget_admittance_control();
 	
 	#ifdef REMOTE_APP
     if(Stop == 1){

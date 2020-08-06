@@ -9,7 +9,7 @@
 
 
 
-#define ForceBufferSize 20
+#define ForceBufferSize 5
 
 struct ForceBuffer{
 	float data[ForceBufferSize];
@@ -22,6 +22,9 @@ void StartCollect (void);
 void StopCollect (void);
 float getCurrentForce(void);
 extern void forceDispatch(CanRxMsg * ForceData);
+
+float getfilteredForce(void);
+
 	
 TEST ForceCollector_test(void);
 TEST SendString_test(void);
