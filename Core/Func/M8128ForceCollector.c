@@ -76,7 +76,7 @@ void StopCollect (void)
 }
 
 
-struct ForceBuffer forceBuffer = {{0.0},0,0};
+struct ForceBuffer forceBuffer = {{0.0,0.0,0.0,0.0,0.0},0,0};
 /*
  * author lhx
  * May 13, 2020
@@ -131,10 +131,10 @@ uint8_t addWeightingForceBuffer(float data)
 // get the latest store weighted data which is filtered in addWeightingForceBuffer function.
 // @call : getPreviousIndex
 //---------------------------------------------------------
-
+extern float Offset;
 float getfilteredForce(void)
 {
-	return forceBuffer.data[getPreviousIndex(forceBuffer.in)];
+	return forceBuffer.data[getPreviousIndex(forceBuffer.in)] - Offset;
 }
 
 //---------------------------------------------------------
@@ -156,7 +156,8 @@ float Offset=0;
 float GetOffset(void)
 {
 	if(n == 200){
-		Offset += AvgForceBuffer();
+		Offset = getfilteredForce();
+		//Offset += AvgForceBuffer();
 		FORCE_MSG("------------------ offset get --------------------\r\n");
 	}
 	return Offset;
@@ -170,6 +171,7 @@ float getCurrentForce(void)
 {
 	return AvgForceBuffer()-Offset;
 }
+
 
 uint8_t OneframeDetected = 0;					// flag for one forcedata frame receive mark
 uint16_t ordernum, dataLength;					// forcedata frame structure
@@ -224,6 +226,14 @@ void forceDispatch(CanRxMsg * ForceData)
 		/*if(++n >= 10){
 			StopCollect();
 		}*/
+	}
+}
+
+
+void WaitForCalibration(void)
+{
+	while(Offset == 0 && n < 200){
+		OSTimeDlyHMSM(0, 0,0,1);
 	}
 }
 

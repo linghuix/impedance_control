@@ -3,7 +3,7 @@
 
 
 #include "BSP.h"
-
+#include "FUNC.h"
 #include "func_can.h"
 #include "debug.h"
 
@@ -25,6 +25,8 @@ extern void forceDispatch(CanRxMsg * ForceData);
 
 float getfilteredForce(void);
 
+
+void WaitForCalibration(void);
 	
 TEST ForceCollector_test(void);
 TEST SendString_test(void);

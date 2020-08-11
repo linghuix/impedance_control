@@ -48,6 +48,7 @@ void EposMaster_Start(void)
 	}
 	
 	StartCollect();
+	WaitForCalibration();
 
 	
 	/* 验证是否进入 Operational 模式 */
