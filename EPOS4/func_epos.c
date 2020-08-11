@@ -31,23 +31,23 @@ void EposMaster_Start(void)
         EPOS_Enable();
 		
 		
-//		for(int i=0;i<NumControllers;i++){
-//			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
-//			Epos_PosSet(Controller[i],home[i]);
-//		}
-//		OSTimeDlyHMSM(0, 0, 1, 0);
-//		/* 验证是否进入位于home */
-//		for(int i=0;i<NumControllers;i++){
-//			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
-//			MSG("pos - %x\r\n",data[i]);
-//		}
+		for(int i=0;i<NumControllers;i++){
+			//SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
+			Epos_PosSet(Controller[i],home[i]);
+		}
+		OSTimeDlyHMSM(0, 0, 2, 0);
+		/* 验证是否进入位于home */
+		for(int i=0;i<NumControllers;i++){
+			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
+			MSG("pos - %d\r\n",data[i]);
+		}
 		
-
-//		OSTimeDlyHMSM(0, 0,2,0);
 		EPOS_PDOEnter();
 	}
 	
 	StartCollect();
+	
+	
 	WaitForCalibration();
 
 	
@@ -57,10 +57,10 @@ void EposMaster_Start(void)
 		MSG("state - %x\r\n",data[i]);
 	}
 	
-	//if(((data[0]>>9)&0x01)){
+	if(((data[0]>>9)&0x01)){
 		MSG("already start MNT\r\n");
 		EPOSMaster_PDOStart();
-	//}
+	}
 }
 
 
@@ -169,7 +169,7 @@ void Epos_SDOSpeedSet(Uint32 speed){
 void EPOS_SetAngle(Epos* epos, Uint32 angle){
     
     #if defined SDO
-    SDO_Write(epos, Position_actual_value, 0x00, angle);
+    SDO_Write(epos, Target_pos, 0x00, angle);
     #endif 
 }
 
@@ -178,9 +178,9 @@ void EPOS_SetAngle(Epos* epos, Uint32 angle){
 void Epos_PosSet(Epos* epos, Uint32 pos)
 {
 
-	 SDO_Write(epos,Position_actual_value ,0x00,0x0F);	
+	 SDO_Write(epos,Controlword ,0x00,0x0F);	
 	 EPOS_SetAngle(epos,pos);
-	 SDO_Write(epos,Position_actual_value ,0x00,0x7F);	
+	 SDO_Write(epos,Controlword ,0x00,0x7F);	
 }
 
 

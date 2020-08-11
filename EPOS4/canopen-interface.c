@@ -219,7 +219,7 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.1, Dm = -0.0/20000.0, Km=1.0/10000.0;			//1.0/10000.0;//2/3perfect
+float Jm = 10, Dm = -0.0/20000.0, Km=1.0/5000.0;			//1.0/10000.0;//2/3perfect
 
 //---------------------------------------------------------
 // admittance control need external force sensor
@@ -258,7 +258,11 @@ void getMotorState(void)
 	Actual_Torque_VALUE_node5 = 12358;
 }
 
-void constantTarget_admittance_control(void)
+//---------------------------------------------------------
+// motor is simalr to spring without mass and damp.
+//---------------------------------------------------------
+
+void constantTarget_admittance_control_kx(void)
 {
 	//waiting for sensor information
 	getMotorState();
@@ -277,13 +281,36 @@ void constantTarget_admittance_control(void)
 	MMSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce);
 }
 
+//---------------------------------------------------------
+// spring with mass
+//---------------------------------------------------------
+float x_target = 0, x_dot = 0;
+void constantTarget_admittance_control_kx_Ja(void)
+{
+	//waiting for sensor information
+	getMotorState();
+	
+	// admittance control algorithm
+	float currentForce = getfilteredForce();
+
+	float x_target;
+	
+	float x_ddot = (currentForce - Km*Pos_Actual_Val_node5)/Jm;
+	x_dot = x_dot + x_ddot*0.01;
+	x_target = x_target + x_dot*0.01;
+
+	int x_int = x_target;
+	Pos_SET_VALUE_node5 = x_target;
+	
+	MMSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce);
+}
 
 void _post_sync(CO_Data* d)
 {
 	(void)d;
 	SYNC_MSG("-post_sync-\r\n");
 //	sin_cos_test(d);
-	constantTarget_admittance_control();
+	constantTarget_admittance_control_kx_Ja();
 	
 	#ifdef REMOTE_APP
     if(Stop == 1){
