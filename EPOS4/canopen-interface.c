@@ -219,7 +219,7 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.0001, Dm = 0.01, Km=0.003;			//1.0/10000.0;//2/3perfect   Km - Nm/degree
+float Jm = 0.0005, Dm = 0.01, Km=0.1;			//1.0/10000.0;//2/3perfect   Km - Nm/degree
 
 //---------------------------------------------------------
 // admittance control need external force sensor
@@ -318,17 +318,46 @@ void constantTarget_admittance_control_kx_Ja_Dxdot(void)
 	// admittance control algorithm
 	float currentForce = getMedianForce();
 
-	if(currentForce < 0.1 && currentForce > -0.1){
+	if(currentForce < 0.0001 && currentForce > -0.0001){
 		currentForce = 0.0;
 	}
 	
 	x_ddot = (currentForce - Km*x_target - Dm*xdot)/Jm;
 	xdot =  xdot + x_ddot*0.01;
 	x_target = x_target + xdot*0.01;
-	MMSG("C d%.2f th%.1f  dd%.2f f%.2f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
+	MMSG("C d%.2f th%.1f  dd%.2f f%.5f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
 	
 	int x_int = x_target*4096.0*4.0/360.0;
 	//MMSG("C %d \r\n", x_int);
+	Pos_SET_VALUE_node5 = x_int;
+}
+
+float x_t=0;
+void zero_force(void)
+{
+	getMotorState();
+	Jm = 0.000001;
+	Km = 0.0001;
+	Dm = sqrt(4*Km*Jm*1);
+	
+	// admittance control algorithm
+	float currentForce = getMedianForce();
+
+	if(currentForce < 0.04 && currentForce > -0.04){
+		currentForce = 0.0;
+	}
+	
+	x_ddot = (currentForce - Km*x_t - Dm*xdot)/Jm;
+	xdot =  xdot + x_ddot*0.01;
+	x_t = x_t + xdot*0.01;
+	
+	
+	x_target = x_target + x_t*0.01;
+	
+	//MMSG("C d%.2f th%.1f  dd%.2f f%.5f\r\n", x_t, x_target, x_ddot, currentForce);
+	MMSG("%.5f\r\n", currentForce);
+	
+	int x_int = x_target*4096.0*4.0/360.0;
 	Pos_SET_VALUE_node5 = x_int;
 }
 
@@ -336,9 +365,7 @@ void _post_sync(CO_Data* d)
 {
 	(void)d;
 	SYNC_MSG("-post_sync-\r\n");
-//	sin_cos_test(d);
-//	constantTarget_admittance_control_kx_Ja();
-	constantTarget_admittance_control_kx_Ja_Dxdot();
+	zero_force();
 	
 	#ifdef REMOTE_APP
     if(Stop == 1){

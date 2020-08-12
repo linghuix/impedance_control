@@ -121,7 +121,7 @@ uint8_t addWeightingForceBuffer(float data)
 {
 	uint16_t previous = getPreviousIndex(forceBuffer.in);
 	uint16_t pprevious = getPreviousIndex(previous);
-	forceBuffer.data[forceBuffer.in] = 0.5*data+0.2*forceBuffer.data[previous]+0.2*forceBuffer.data[pprevious];
+	forceBuffer.data[forceBuffer.in] = 0.9*data+0.1*forceBuffer.data[previous]+0*forceBuffer.data[pprevious];
 	forceBuffer.in = (forceBuffer.in + 1)%ForceBufferSize;
 	return 1;
 }
@@ -181,7 +181,7 @@ uint32_t n=0;		// num order of force data
 float Offset=0;
 float GetOffset(void)
 {
-	if(n == 200){
+	if(n == 300){
 		Offset = getfilteredForce();
 		//Offset += AvgForceBuffer();
 		FORCE_MSG("------------------ offset get --------------------\r\n");
