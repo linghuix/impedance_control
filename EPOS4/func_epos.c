@@ -32,7 +32,7 @@ void EposMaster_Start(void)
 		
 		
 		for(int i=0;i<NumControllers;i++){
-			//SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 700);				//reset speed set slower
+			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 500);				//reset speed set slower
 			Epos_PosSet(Controller[i],home[i]);
 		}
 		OSTimeDlyHMSM(0, 0, 2, 0);

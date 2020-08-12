@@ -24,6 +24,7 @@ float getCurrentForce(void);
 extern void forceDispatch(CanRxMsg * ForceData);
 
 float getfilteredForce(void);
+float getMedianForce(void);
 
 
 void WaitForCalibration(void);

@@ -121,17 +121,43 @@ uint8_t addWeightingForceBuffer(float data)
 {
 	uint16_t previous = getPreviousIndex(forceBuffer.in);
 	uint16_t pprevious = getPreviousIndex(previous);
-	forceBuffer.data[forceBuffer.in] = 0.9*data+0.1*forceBuffer.data[previous]+0*forceBuffer.data[pprevious];
+	forceBuffer.data[forceBuffer.in] = 0.5*data+0.2*forceBuffer.data[previous]+0.2*forceBuffer.data[pprevious];
 	forceBuffer.in = (forceBuffer.in + 1)%ForceBufferSize;
 	return 1;
 }
 
 
+extern float Offset;
+float getMedianForce(void)
+{
+	uint16_t previous = getPreviousIndex(forceBuffer.in);
+	uint16_t pprevious = getPreviousIndex(previous);
+	float median = 0;
+	if(forceBuffer.data[previous] > forceBuffer.data[pprevious])
+	{
+		if(median > forceBuffer.data[previous]){
+			median = forceBuffer.data[previous];
+		}
+		else if(median < forceBuffer.data[pprevious]){
+			median = forceBuffer.data[pprevious];
+		}
+	}
+	else {
+		if(median < forceBuffer.data[previous]){
+			median = forceBuffer.data[previous];
+		}
+		else if(median > forceBuffer.data[pprevious]){
+			median = forceBuffer.data[pprevious];
+		}
+	}
+
+	return median - Offset;
+}
+
 //---------------------------------------------------------
 // get the latest store weighted data which is filtered in addWeightingForceBuffer function.
 // @call : getPreviousIndex
 //---------------------------------------------------------
-extern float Offset;
 float getfilteredForce(void)
 {
 	return forceBuffer.data[getPreviousIndex(forceBuffer.in)] - Offset;
