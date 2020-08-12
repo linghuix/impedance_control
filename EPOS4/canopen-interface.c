@@ -219,7 +219,7 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.1, Dm = 0.1, Km=0.1;			//1.0/10000.0;//2/3perfect
+float Jm = 0.1, Dm = 0.1, Km=0.1;			//1.0/10000.0;//2/3perfect   Km - Nm/degree
 
 //---------------------------------------------------------
 // admittance control need external force sensor
@@ -273,13 +273,14 @@ void constantTarget_admittance_control_kx(void)
 
 	float x_target;
 	
-	x_target = (currentForce)/Km;//4000
+	x_target = (currentForce)/Km;		// degree
 
-	int x_int = x_target;
+	int x_int = x_target/360*4096.0*4.0;// degree to qc
 	Pos_SET_VALUE_node5 = x_target;
 	
 	//MMSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce);
 }
+
 
 
 
