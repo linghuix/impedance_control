@@ -23,7 +23,7 @@ void EposMaster_Start(void)
 	
 	setState(&TestMaster_Data, Initialisation);
 	
-	if (!(*(TestMaster_Data.iam_a_slave)))		//master
+	if (!(*(TestMaster_Data.iam_a_slave)) && 1)		//master
 	{
         Epos_init();
 		Epos_PDOConfig();
@@ -47,7 +47,6 @@ void EposMaster_Start(void)
 	
 	StartCollect();
 	
-	
 	WaitForCalibration();
 
 	
@@ -57,10 +56,10 @@ void EposMaster_Start(void)
 		MSG("state - %x\r\n",data[i]);
 	}
 	
-	if(((data[0]>>9)&0x01)){
+	//if(((data[0]>>9)&0x01)){
 		MSG("already start MNT\r\n");
 		EPOSMaster_PDOStart();
-	}
+	//}
 }
 
 

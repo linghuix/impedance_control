@@ -121,7 +121,7 @@ uint8_t addWeightingForceBuffer(float data)
 {
 	uint16_t previous = getPreviousIndex(forceBuffer.in);
 	uint16_t pprevious = getPreviousIndex(previous);
-	forceBuffer.data[forceBuffer.in] = 0.04*data+0.48*forceBuffer.data[previous]+0.48*forceBuffer.data[pprevious];
+	forceBuffer.data[forceBuffer.in] = 0.9*data+0.1*forceBuffer.data[previous]+0*forceBuffer.data[pprevious];
 	forceBuffer.in = (forceBuffer.in + 1)%ForceBufferSize;
 	return 1;
 }
@@ -232,9 +232,13 @@ void forceDispatch(CanRxMsg * ForceData)
 
 void WaitForCalibration(void)
 {
-	while(Offset == 0 && n < 200){
-		OSTimeDlyHMSM(0, 0,0,1);
+	MMSG("WaitFor force Calibration\r\n");
+	while(Offset == 0 && n < 300){
+		OSTimeDlyHMSM(0, 0,0,2);		// can frame need to send while waiting for calibration
 	}
+	OSTimeDlyHMSM(0, 0,0,50);			// without it the following MMSG cannot print.
+	MMSG("force Calibration finish\r\n");
+
 }
 
 
