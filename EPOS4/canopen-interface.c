@@ -219,7 +219,7 @@ typedef struct
 MotorState_t desiredTarget = {0,0,0,0};
 MotorState_t CurrentState = {0};
 float M = 0.01, L=0.3, J = 0.0037;
-float Jm = 0.1, Dm = 0.1, Km=0.1;			//1.0/10000.0;//2/3perfect   Km - Nm/degree
+float Jm = 0.01, Dm = 0.1, Km=0.1;			//1.0/10000.0;//2/3perfect   Km - Nm/degree
 
 //---------------------------------------------------------
 // admittance control need external force sensor
@@ -234,7 +234,7 @@ extern int32_t Pos_SET_VALUE_node5;
 
 void getMotorState(void)
 {
-	uint8_t time = 20;
+//	uint8_t time = 20;
 	
 //	while(Pos_Actual_Val_node5 == 12358 && time >0){				//make sure data did refresh
 //		time --;
@@ -283,13 +283,40 @@ void constantTarget_admittance_control_kx(void)
 
 
 
+//---------------------------------------------------------
+// spring with mass
+//---------------------------------------------------------
+float x_target = 0.0, x_ddot=0.0, xdot = 0.0;
+void constantTarget_admittance_control_kx_Ja(void)
+{
+	//waiting for sensor information
+	getMotorState();
+	
+	// admittance control algorithm
+	float currentForce = getfilteredForce();
+
+	if(currentForce < 0.1 && currentForce > -0.1){
+		currentForce = 0.0;
+	}
+	
+	x_ddot = (currentForce - Km*x_target)/Jm;
+	xdot =  xdot + x_ddot*0.01;
+	x_target = x_target + xdot*0.01;
+	MMSG("C d%.2f th%.1f  ddf%.2f f%.2f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
+	
+	int x_int = x_target/360.0*4096.0*4.0;
+	Pos_SET_VALUE_node5 = x_int;
+	
+
+}
+
 
 void _post_sync(CO_Data* d)
 {
 	(void)d;
 	SYNC_MSG("-post_sync-\r\n");
 //	sin_cos_test(d);
-	constantTarget_admittance_control_kx();
+	constantTarget_admittance_control_kx_Ja();
 	
 	#ifdef REMOTE_APP
     if(Stop == 1){
