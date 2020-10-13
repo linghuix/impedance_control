@@ -181,7 +181,7 @@ uint32_t n=0;		// num order of force data
 float Offset=0;
 float GetOffset(void)
 {
-	if(n == 300){
+	if(n == 500){
 		Offset = getfilteredForce();
 		//Offset += AvgForceBuffer();
 		FORCE_MSG("------------------ offset get --------------------\r\n");
