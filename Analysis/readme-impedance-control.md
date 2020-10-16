@@ -116,12 +116,12 @@ int x_int = x_target/360.0*4096.0*4.0;
 Pos_SET_VALUE_node5 = x_int;
 ```
 
-
+[质量 0.1](./img/弹簧-质量块2.mp4) 
 
 质量0.1
 
 <video src="./img/弹簧-质量块2.mp4" width=50%> </video>
-[质量 0.01](.img/springmass-0-001.mp4) 
+[质量 0.01](img/springmass-0-001.mp4) 
 
 
 <video src="./img/springmass-0-001.mp4" width=50%> </video>

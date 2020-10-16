@@ -31,6 +31,9 @@ Epos4-50-15/Output/*
 *.zip
 *.pc
 *.uvoptx
+*.mp4
+*.jpg
+*.png
 
 /**office**/
 *.xlsx
