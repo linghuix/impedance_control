@@ -33,6 +33,8 @@ Epos4-50-15/Output/*
 *.zip
 *.pc
 *.uvoptx
+.gitignore
+*md
 
 /**documents**/
 *.mp4
