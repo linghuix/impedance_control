@@ -19,6 +19,7 @@
 #define CAN_SEND_MSG(...)		//MYMSG(__VA_ARGS__)
 #define CAN_RCV_MSG(...)		//MYMSG(__VA_ARGS__)
 #define TPDO_MSG(...)			//printf("TPDO: ");MYMSG(__VA_ARGS__)
+#define RPDO_MSG(...)			printf("RPDO: ");MYMSG(__VA_ARGS__)
 #define SYNC_MSG(...)			//printf("SYNC: ");MYMSG(__VA_ARGS__)
 #define ROW_MSG(...)			MYMSG(__VA_ARGS__)					//需要发送到PC等地方进行进一步处理的信息
 #define REMOTE_RECEIVEMSG(...)	printf("REMOTE: ");MYMSG(__VA_ARGS__)
@@ -27,6 +28,8 @@
 #define FORCE_COMMUNICATE_MSG(...)			//MYMSG(__VA_ARGS__)
 #define FORCE_DECODE_MSG(...)				//MYMSG(__VA_ARGS__)
 #define FORCE_MSG(...)						MYMSG(__VA_ARGS__)
+#define CONTROL_MSG(...)					MYMSG(__VA_ARGS__)
+#define TEST_MSG(...) 						//MYMSG(__VA_ARGS__)
 /*
  Definition of MSG_ERR
  ---------------------
@@ -64,4 +67,5 @@ void debug_IRQ(void);
 	void test_printf(void);
 	TEST test_SpeedOfBuffer_printf(void);
 	#endif
+
 #endif

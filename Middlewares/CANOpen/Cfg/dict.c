@@ -883,7 +883,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 /*0x0026  node6*/
 					INTEGER16 Torque_SET_VALUE_node6 = 0x0;
 					subindex TestMaster_Index0026[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node6, NULL },};
-/*0x0026  node7*/
+/*0x0027  node7*/
 					INTEGER16 Torque_SET_VALUE_node7 = 0x0;
 					subindex TestMaster_Index0027[] ={{ RW, int16, sizeof (INTEGER16), (void*)&Torque_SET_VALUE_node7, NULL },};
 					

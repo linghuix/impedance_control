@@ -6,8 +6,8 @@
  * 描述 
  * 调用  
  */
-uint8_t NODE_ID[] = {6,5,4,5,6,7};                          																//EPOS ID
-Epos Controller1, Controller2, Controller3, Controller4, Controller5, Controller6;        //控制器对
+uint8_t NODE_ID[] = {6,5,4,3,2,1};                          							//EPOS ID
+Epos Controller1, Controller2, Controller3, Controller4, Controller5, Controller6;      //控制器对
 Epos *Controller[] = {&Controller1, &Controller2, &Controller3, &Controller4, &Controller5, &Controller6};
 uint8_t NumControllers = 1;
 int home[] = {0, 0, 0, 0,0,0};
@@ -23,19 +23,20 @@ void EposMaster_Start(void)
 	
 	setState(&TestMaster_Data, Initialisation);
 	
-	if (!(*(TestMaster_Data.iam_a_slave)) && 1)		//master
+	if (!(*(TestMaster_Data.iam_a_slave)) && 1)							// I am master
 	{
         Epos_init();
+		EPOS_NMT_Reset();												// for exit NMT mode
 		Epos_PDOConfig();
         Epos_ModeSet(Cyclic_Synchronous_Position_Mode);
         EPOS_Enable();
 		
-		
 		for(int i=0;i<NumControllers;i++){
-			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 500);				//reset speed set slower
+			SDO_Write(Controller[i], Max_Profile_Velocity, 0x00, 500);	//reset speed set slower
 			Epos_PosSet(Controller[i],home[i]);
 		}
 		OSTimeDlyHMSM(0, 0, 2, 0);
+		
 		/* 验证是否进入位于home */
 		for(int i=0;i<NumControllers;i++){
 			data[i] = SDO_Read(Controller[i], Position_actual_value, 0X00);
@@ -45,21 +46,17 @@ void EposMaster_Start(void)
 		EPOS_PDOEnter();
 	}
 	
-	StartCollect();
-	
-	WaitForCalibration();
-
-	
 	/* 验证是否进入 Operational 模式 */
-	for(int i=0;i<NumControllers;i++){
+	for(int i=0;i<NumControllers;i++)
+	{
 		data[i] = SDO_Read(Controller[i], Statusword, 0X00);
 		MSG("state - %x\r\n",data[i]);
 	}
-	
-	//if(((data[0]>>9)&0x01)){
+	if(((data[0]>>9)&0x01))
+	{
 		MSG("already start MNT\r\n");
 		EPOSMaster_PDOStart();
-	//}
+	}
 }
 
 

@@ -62,7 +62,6 @@ void Task_Start(void *p_arg)
  * 			3. Epos Inital
  * Window > Preferences > C/C++ > Editor > Templates.
  */
-
 OS_Q *	gg;
 OS_EVENT * CRCV_WAIT_Semp;	//等待CAN接收
 #include "func_CanOpen.h"
@@ -74,9 +73,8 @@ void CANOpen_App_Init(void)
 	//HAL_TIM_Base_Start_IT(CANOPEN_TIMx_handle);			//在EposMaster_Start函数中启动
 	CAN_Start(&hcan1);
 	
-	ForceCollector_Init();
-	StopCollect();											//stop the force collector 
-	FORCE_MSG("stop force collector.\r\n");
+
+
 	
 	/* 操作系统管理 */
 	CRCV_WAIT_Semp = OSSemCreate(0);
@@ -101,6 +99,11 @@ void CANOpen_App_Init(void)
 	  &cansend_task_stk[TASK_B_STK_SIZE-1], TASK_cansend_PRIO);
 		OSTaskCreate(CANApp_Task,(void *)0,					  	//创建CANApp_Task任务
 		 &canapp_task_stk[TASK_A_STK_SIZE-1], TASK_canapp_PRIO);*/
+	
+	
+	// force sensor init
+	Force_1912_Init(0x01);
+	Force_1912_Start();
 }
 
 
@@ -127,6 +130,13 @@ void Epos_Task(void *p_arg)
 	Task_MSG("CANApp_Task ... ");
 		
 	EposMaster_Init();
+
+////	WaitForCalibration();
+//	while(1){
+//		OSTimeDlyHMSM(0, 0, 1, 0);
+//		MSG("%.4f\r\n", getCurrentForce());
+//	}
+	
 	EposMaster_Start();
 	PID_Init(&forceControlPID, 0,0,0,1500,1500,1500,8000);
 	
@@ -209,12 +219,12 @@ void CANRcv_Task(void *p_arg)
 			}
 			CAN_RCV_MSG("\r\n");
 
-			if(msg.cob_id == 0x10){
-				forceDispatch(RxMsg);
-			}
-			else{
+//			if(msg.cob_id == 0x10){
+//				forceDispatch(RxMsg);
+//			}
+//			else{
 				canDispatch(&TestMaster_Data, &msg);	   //处理接收到的CAN帧，调用协议库相关接口
-			}
+//			}
 
 			if(waiting_sdo == 1){
 				OSSemQuery (CRCV_WAIT_Semp, &sem_data);
@@ -249,6 +259,9 @@ void CANSend_Task(void *p_arg)
 }
 
 #ifdef REMOTE_APP
+
+
+
 void Remote_App_Init(void)
 {
 	/* 串口配置 */

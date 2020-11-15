@@ -130,16 +130,6 @@ void DebugMon_Handler(void)
 {
 }
 
-/**
-  * @brief  This function handles PendSVC exception.
-  * @param  None
-  * @retval : None
-  */
-//void PendSV_Handler(void)
-//{
-//	printf(" PendSV_Handler !!!\r\n");
-//
-//}
 
 /**
   * @brief  This function handles SysTick Handler.
@@ -187,7 +177,9 @@ void CAN1_RX0_IRQHandler(void)
 
 void CAN1_TX_IRQHandler(void)
 {
+	OSIntEnter();
 	HAL_CAN_IRQHandler(&hcan1);
+	OSIntExit();
 }
 
 
@@ -236,17 +228,29 @@ void TIM1_TRG_COM_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
 	//HAL_UART_IRQHandler(&huart1);
+	OSIntEnter();
+	
+	MSG("usart1\r\n");
 	debug_IRQ();
+	HAL_UART_IRQHandler(&huart1);
+	
+	OSIntExit();
 }
 
 void USART2_IRQHandler(void)
 {
+	OSIntEnter();
+	
+//	MYMSG("usart2\r\n");
 	HAL_UART_IRQHandler(&huart2);
+	
+	IDLE_UART_IRQHandler(&huart2);
+	
+	OSIntExit();
 }
 
 /**
   * @}
   */ 
-
 
 /******************* (C) COPYRIGHT 2009 STMicroelectronics *****END OF FILE****/

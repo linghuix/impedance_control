@@ -110,7 +110,7 @@ void Node_PDOConfig(Epos* epos)
 {
     //Receive PDO 1 Parameter
     SDO_Write(epos,0x14000120,0x01,0x200+epos->node_ID); 	//ID与接收的TxPDO对应，实现两者之间的传输
-	SDO_Write(epos,0x14000208,0x01,0x1); 					//ID与接收的TxPDO对应，实现两者之间的传输
+	SDO_Write(epos,0x14000208,0x01,0x1); 				
     SDO_Write(epos,0x14010120,0x01,(0x300+epos->node_ID)|PDO_NoAllow); 	//unvaild
 	SDO_Write(epos,0x14010208,0x01,0x1); 								//ID与接收的TxPDO对应，实现两者之间的传输
     SDO_Write(epos,0x14020120,0x01,(0x400+epos->node_ID)|PDO_NoAllow);
@@ -120,6 +120,7 @@ void Node_PDOConfig(Epos* epos)
 	
 	SDO_Write(epos,0x16000008,0x01,0x0); 					//RxPDO map
 	SDO_Write(epos,0x16000120,0x01,Target_pos); 
+//	SDO_Write(epos,0x16000120,0x01,Target_torque);
 	SDO_Write(epos,0x16000008,0x01,0x1); 					
 
 	

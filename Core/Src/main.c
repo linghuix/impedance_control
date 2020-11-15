@@ -28,8 +28,10 @@ int main(void)
 {
 	BSP_Init();
 	debug_init();
-	//CAN_Send_test();
-
+	
+	printf("beginning\r\n");
+	//test_GetCurrentForce();
+	
 	OSInit();
 	MSG("--------------------------------------                   \r\n");
 	MSG("   --------------------------------------                   \r\n");
@@ -44,11 +46,13 @@ int main(void)
 	OSTaskCreate(Task_Start,(void *)0, &startup_task_stk[STARTUP_TASK_STK_SIZE-1], STARTUP_TASK_PRIO);
 
 	OSStart();
+	
 
 	while(1){
 		printf("system not start !");
 	}
-	//return 0;
+//	return 0;
+
 }
 
 

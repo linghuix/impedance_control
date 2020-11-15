@@ -3,7 +3,7 @@
 
 #include "func_CanOpen.h"
 #include "func_epos.h"
-#include "M8128ForceCollector.h"
+#include "func_1912.h"
 #include "gait.h"
 #include "led.h"
 
@@ -24,7 +24,7 @@
 #define STARTUP_TASK_STK_SIZE   	80
 #define	TASK_A_STK_SIZE				300
 #define	TASK_B_STK_SIZE				400
-#define	TASK_remote_STK_SIZE				400
+#define	TASK_remote_STK_SIZE		400
 #define	TASK_canapp_STK_SIZE		500
 #define CAN_RECEIVE_STK 			700
 

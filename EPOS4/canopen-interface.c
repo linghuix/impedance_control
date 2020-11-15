@@ -6,6 +6,8 @@
  */
 
 #include "canopen_interface.h"
+#include <stdlib.h> 
+#include <math.h>
 
 /*
  * author lhx
@@ -50,6 +52,11 @@ void assive (CO_Data* d);
 void Test_curve(CO_Data* d);
 void sin_cos_test (CO_Data* d);
 
+
+/**
+  * @brief callback function after PDO communication
+  * @year 2020/11/07
+  */
 void _post_TPDO(CO_Data* d)
 {
 	//assive(d);
@@ -131,6 +138,7 @@ void assive (CO_Data* d)
 	}
 	
 }
+
 
 Uint32 pos;
 int subI = 0;
@@ -224,7 +232,7 @@ float Jm = 0.0001, Dm = 0.01, Km=0.003;			//1.0/10000.0;//2/3perfect   Km - Nm/d
 //---------------------------------------------------------
 // admittance control need external force sensor
 //---------------------------------------------------------
-#include "M8128ForceCollector.h"
+#include "func_1912.h"
 
 float currenttheta, currenttheta_dot, currentforce;	//单位 
 
@@ -232,6 +240,7 @@ extern int32_t Pos_Actual_Val_node5, Actual_Velocity_VALUE_node5,Current_Actual_
 extern int16_t Actual_Torque_VALUE_node5;
 extern int32_t Pos_SET_VALUE_node5;
 
+float lastfilteredForce = 0, lastrawForce=0;
 void getMotorState(void)
 {
 //	uint8_t time = 20;
@@ -252,24 +261,27 @@ void getMotorState(void)
 	CurrentState.torque = Actual_Torque_VALUE_node5;			//CANOpen dict 	mNm
 	
 	//Current_Actual_Val_node5 mA
-	//printf("ActualState %.2f\t%.2f\t%.2f\t%d\t\r\n", CurrentState.theta, CurrentState.theta_dot, CurrentState.torque, Current_Actual_Val_node5);
+//	RPDO_MSG("ActualState %.2f\t%.2f\t%.2f\t%d\t\r\n", CurrentState.theta, CurrentState.theta_dot, CurrentState.torque, Current_Actual_Val_node5);
+	
 //	Pos_Actual_Val_node5=12358;
 //	Actual_AVRVelocity_VALUE_node5=12358;
 //	Actual_Torque_VALUE_node5 = 12358;
 }
 
-//---------------------------------------------------------
-// motor is simalr to spring without mass and damp.
-//---------------------------------------------------------
+int time = 0;
+float calibration = 0.0, calibration_BCK = 0.0;
+#define Reducer_ratio 20
+/**
+  * @brief  motor is simalr to spring without mass and damp.
+  * @year 2020/11/07
+  */
 
 void constantTarget_admittance_control_kx(void)
 {
-	//waiting for sensor information
-	getMotorState();
 	
 	// admittance control algorithm
 //	float currentForce = getCurrentForce();
-	float currentForce = getfilteredForce();
+	float currentForce = getCurrentForce();
 
 	float x_target;
 	
@@ -278,22 +290,21 @@ void constantTarget_admittance_control_kx(void)
 	int x_int = x_target/360*4096.0*4.0;// degree to qc
 	Pos_SET_VALUE_node5 = x_target;
 	
-	//MMSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce);
+	CONTROL_MSG("Command %d %.2f Dm %.2f  f %.2f\r\n", x_int, x_target, Dm*CurrentState.theta_dot, currentForce);
 }
 
 
-
-//---------------------------------------------------------
-// spring with mass
-//---------------------------------------------------------
+/**
+  * @brief spring with mass
+  * @year 2020/11/07
+  */
 float x_target = 0.0, x_ddot=0.0, xdot = 0.0;
 void constantTarget_admittance_control_kx_Ja(void)
 {
 	//waiting for sensor information
-	getMotorState();
 	
 	// admittance control algorithm
-	float currentForce = getfilteredForce();
+	float currentForce = getCurrentForce();
 
 	if(currentForce < 0.1 && currentForce > -0.1){
 		currentForce = 0.0;
@@ -302,43 +313,99 @@ void constantTarget_admittance_control_kx_Ja(void)
 	x_ddot = (currentForce - Km*x_target)/Jm;
 	xdot =  xdot + x_ddot*0.01;
 	x_target = x_target + xdot*0.01;
-	MMSG("C d%.2f th%.1f  dd%.2f f%.2f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
+	CONTROL_MSG("C d%.2f th%.1f  dd%.2f f%.2f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
 	
 	int x_int = x_target*4096.0*4.0/360.0;
 	//MMSG("C %d \r\n", x_int);
 	Pos_SET_VALUE_node5 = x_int;
 }
 
+
+
+/**
+  * @brief spring with mass and damp
+  * @year 2020/11/07
+  */
 void constantTarget_admittance_control_kx_Ja_Dxdot(void)
 {
-	//waiting for sensor information
-	getMotorState();
-	Dm = sqrt(4*Km*Jm);
-	
-	// admittance control algorithm
-	float currentForce = getMedianForce();
 
-	if(currentForce < 0.1 && currentForce > -0.1){
-		currentForce = 0.0;
+	float Jm = 0.001, Km=0.02, alpha_min = 0.05, beta = 0.001;
+	//waiting for sensor information
+	float filteredForce, alpha, currentForce, cali_currentForce;
+	// admittance control algorithm
+	float raw_force= getCurrentForce();
+	
+	Dm = sqrt(4*Km*Jm);
+
+	if(raw_force > lastrawForce+0.7 || raw_force < lastrawForce-0.7){
+		currentForce = lastrawForce;
+	}
+	else{
+		currentForce = raw_force;
 	}
 	
-	x_ddot = (currentForce - Km*x_target - Dm*xdot)/Jm;
+	cali_currentForce = currentForce-calibration;
+	
+//	if(currentForce > lastrawForce+1 || currentForce < lastrawForce-1){
+//		alpha = alpha_min;
+//		filteredForce = lastForce;
+//	}
+//	else{
+		if(cali_currentForce < 0.1 && cali_currentForce > -0.1){
+			cali_currentForce = 0.0;
+		}
+
+		if(lastfilteredForce-cali_currentForce < 0){
+			alpha = alpha_min+beta*(cali_currentForce-lastfilteredForce);
+		}
+		alpha = alpha_min+beta*(lastfilteredForce-cali_currentForce);
+		if(alpha < 0) alpha = 0;
+		if(alpha > 1) alpha = 1;
+		
+		filteredForce = cali_currentForce*alpha+lastfilteredForce*(1-alpha);
+//	}
+	x_ddot = (filteredForce - Km*x_target - Dm*xdot)/Jm;
 	xdot =  xdot + x_ddot*0.01;
 	x_target = x_target + xdot*0.01;
-	MMSG("C d%.2f th%.1f  dd%.2f f%.2f %.2f\r\n", xdot, x_target, x_ddot, currentForce, Km*CurrentState.theta);
+//	CONTROL_MSG("d %.2f\tth %.1f\tdd %.2f\tf %.4f\t %.2f\r\n", xdot, x_target, x_ddot, filteredForce, Km*CurrentState.theta);
+	CONTROL_MSG("force %.4f\t\t raw_force %.4f-%.4f\t\talpha %.4f\t\tcurr %.2f %.2f\r\n", filteredForce, raw_force,lastrawForce, alpha,currentForce,calibration);
 	
-	int x_int = x_target*4096.0*4.0/360.0;
+	int x_int = x_target*4096.0*Reducer_ratio*4.0/360.0;
 	//MMSG("C %d \r\n", x_int);
 	Pos_SET_VALUE_node5 = x_int;
+		
+	lastfilteredForce = filteredForce;
+	lastrawForce = currentForce;
+		
+//	if(time%50 == 0 && time<1000){
+//		calibration_BCK += filteredForce;
+//	}
+//	if(time == 800 && calibration == 0 ){
+////		calibration_BCK += filteredForce;
+//		calibration = filteredForce;
+//		lastfilteredForce = lastfilteredForce - calibration;
+//	}
+//	if(calibration !=calibration_BCK && time%10 == 0){
+//		calibration += 0.01*calibration_BCK;
+//	}
+	
 }
 
+/**
+  * @brief callback function after sync communication
+  * @year 2020/11/07
+  */
 void _post_sync(CO_Data* d)
 {
+	time++;
 	(void)d;
 	SYNC_MSG("-post_sync-\r\n");
+	
 //	sin_cos_test(d);
-//	constantTarget_admittance_control_kx_Ja();
+	getMotorState();										//waiting for sensor information
+	getCurrentForce();
 	constantTarget_admittance_control_kx_Ja_Dxdot();
+//	Pos_SET_VALUE_node5 -= 1000;
 	
 	#ifdef REMOTE_APP
     if(Stop == 1){
@@ -353,7 +420,6 @@ void _post_sync(CO_Data* d)
     }
 	#endif
 }
-
 
 
 

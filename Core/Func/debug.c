@@ -115,6 +115,7 @@ int fgetc(FILE * F)		// Keil
 void debug_init(void)
 {
 	MX_USART1_UART_Init();
+	printf("debug initing ... \r\n");
 }
 
 /*
